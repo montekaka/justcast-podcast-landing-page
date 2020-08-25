@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import styles from '../styles/Podcast.module.css'
-
 
 const RightSideCoverImage = dynamic(
   () => import('../components/RightSideCoverImage'),
@@ -108,7 +106,7 @@ const HeaderMeta = ({data}) => {
 export const getServerSideProps = async ({params: {slug}}) => {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
-  const res = await fetch(`https://feed.justcast.com/v1/shows/${slug}`)
+  const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}`)
   const data = await res.json()
 
   // Pass post data to the page via props
