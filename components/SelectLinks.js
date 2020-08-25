@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from "react";
+import {useSpring, animated} from 'react-spring'
 import QRCode from "react-qr-code";
 import Select from 'react-select';
 import ScaleLoader from "react-spinners/ScaleLoader";
 
 const SelectLinks = ({id, data}) => {
+  
   const [loading, setLoading] = useState(true);
   const [qrCode, setQRCode] = useState({})
   const [rssFeed, setRssFeed] = useState('')
   const [links, setLinks] = useState([]);
   const [copyFeedLink, setCopyFeedLink] = useState('Copy Feed Link')
+  const props = useSpring({config: { duration: 2000 }, opacity: loading ? 0 : 1, from: {opacity: 0}})
 
   const copyToClipboard = () => {
     const copyText = document.querySelector('#text-rss-feed');
@@ -78,6 +81,7 @@ const SelectLinks = ({id, data}) => {
       }, 500)
     }
   }, [id])
+  // return <animated.div style={props}>i will fade</animated.div>
 
   return (
     loading ? 
@@ -90,7 +94,7 @@ const SelectLinks = ({id, data}) => {
         />
       </div>    
     </> :
-    <>
+    <animated.div style={props}>
       <Select value={qrCode} options={links} onChange={setQRCode}/>
       <div style={{paddingTop: "40px", display: "flex", justifyContent: "center"}}>
         <QRCode value={qrCode.value ? qrCode.value : ""} size={200}/>
@@ -108,7 +112,7 @@ const SelectLinks = ({id, data}) => {
       <hr/>
       <div onClick={copyToClipboard} className="btn btn-secondary btn-block lift">{copyFeedLink}</div>            
       <input defaultValue={rssFeed} id="text-rss-feed" style={{position: "absolute", left: '-9999px'}}/> 
-    </>
+    </animated.div>
   )
 }
 
