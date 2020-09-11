@@ -110,7 +110,10 @@ const SelectLinks = ({id, data}) => {
         )
       }                  
       <hr/>
-      <div onClick={copyToClipboard} className="btn btn-secondary btn-block lift">{copyFeedLink}</div>            
+      <div onClick={copyToClipboard} className="btn btn-secondary btn-block lift">{copyFeedLink}</div>
+      <a className="btn btn-primary btn-block lift" href={data.player_page_link}>
+        Visit our Home Page
+      </a>
       <input defaultValue={rssFeed} id="text-rss-feed" style={{position: "absolute", left: '-9999px'}}/> 
     </animated.div>
   )

@@ -15,7 +15,7 @@ const SelectLinks = dynamic(
 const Podcast = ({data}) => {
   const {
     id, name, link, author, email, description, artwork_url_256,
-    rss_feed
+    rss_feed, player_page_link
   } = data;
 
 
@@ -27,7 +27,7 @@ const Podcast = ({data}) => {
           <div className="row align-items-center justify-content-center no-gutters min-vh-100">
             <div className="col-12 col-md-6 col-lg-4 py-8 py-md-11">
               <h1 className="mb-0 font-weight-bold">{name}</h1>
-              <p className="mb-6">Add our content to your favorite podcast player</p>
+              <p className="mb-6">Add our content to your favorite podcast player by clicking the button below or <a href={player_page_link}>click</a> here for the home page.</p>
               <SelectLinks id={id} data={data}/>
             </div>
             <RightSideCoverImage imageURL={artwork_url_256}/>          
@@ -107,8 +107,8 @@ export const getServerSideProps = async ({params: {slug}}) => {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
   const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}`)
-  const data = await res.json()
-
+  
+  const data = await res.json()  
   // Pass post data to the page via props
   return { props: { data } }
 }
