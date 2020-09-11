@@ -15,7 +15,7 @@ const SelectLinks = dynamic(
 const Podcast = ({data}) => {
   const {
     id, name, link, author, email, description, artwork_url_256,
-    rss_feed, player_page_link
+    rss_feed, player_page_link, hide_home_page_button_from_landing_page
   } = data;
 
 
