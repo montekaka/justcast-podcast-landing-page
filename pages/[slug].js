@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
+
 const RightSideCoverImage = dynamic(
   () => import('../components/RightSideCoverImage'),
   { ssr: false}
@@ -12,10 +13,17 @@ const SelectLinks = dynamic(
   { ssr: false}
 )
 
+const SocialNetworkButtons = dynamic(
+  () => import('../components/SocialNetworkButtons'),
+  { ssr: false}
+)
+
+
 const Podcast = ({data}) => {
   const {
     id, name, link, author, email, description, artwork_url_256,
-    rss_feed, player_page_link, hide_home_page_button_from_landing_page
+    rss_feed, player_page_link, hide_home_page_button_from_landing_page,
+    facebook_page, twitter_handle, instagram_profile
   } = data;
 
 
@@ -27,6 +35,11 @@ const Podcast = ({data}) => {
           <div className="row align-items-center justify-content-center no-gutters min-vh-100">
             <div className="col-12 col-md-6 col-lg-4 py-8 py-md-11">
               <h1 className="mb-0 font-weight-bold">{name}</h1>
+              <SocialNetworkButtons
+                facebook_page={facebook_page}
+                twitter_handle={twitter_handle}
+                instagram_profile={instagram_profile}
+              />
               <p className="mb-6">
                 Add our content to your favorite podcast player by clicking the button below {hide_home_page_button_from_landing_page ? <></> : <>or <a href={player_page_link}>click</a> here for the home page.</>}
               </p>
