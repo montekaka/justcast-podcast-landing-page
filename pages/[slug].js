@@ -28,7 +28,7 @@ const Podcast = ({data}) => {
             <div className="col-12 col-md-6 col-lg-4 py-8 py-md-11">
               <h1 className="mb-0 font-weight-bold">{name}</h1>
               <p className="mb-6">
-                Add our content to your favorite podcast player by clicking the button below or {hide_home_page_button_from_landing_page ? <></> : <><a href={player_page_link}>click</a> here for the home page.</>}
+                Add our content to your favorite podcast player by clicking the button below {hide_home_page_button_from_landing_page ? <></> : <>or <a href={player_page_link}>click</a> here for the home page.</>}
               </p>
               <SelectLinks id={id} data={data}/>
             </div>
