@@ -60,9 +60,12 @@ const HeaderMeta = ({data}) => {
   const {
     id, name, link, author, email, description, title, keywords, 
     artwork_url_16, artwork_url_32, artwork_url_64, artwork_url_256,
-    rss_feed, page_link, twitter_handle
+    rss_feed, page_link, twitter_handle, is_private_show
   } = data;
 
+  if(is_private_show) {
+    return null;
+  }
   return (
     <Head>
       <title>{name}</title>
