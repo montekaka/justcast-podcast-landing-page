@@ -1,10 +1,19 @@
 import React from 'react';
-import { ShowTitle } from '../../components/ShareEpisode'
+import { ShowTitle, ShowInfo } from '../../components/ShareEpisode'
 
 const Post = ({data}) => {
   return (
     <>
       <ShowTitle title={data.show.name}/>
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-4">
+              <ShowInfo publishDate="SEPTEMBER 29, 2020" authorName="Josh Chen" websiteUrl="abc"/>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
 
   )

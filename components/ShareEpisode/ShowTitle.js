@@ -4,11 +4,11 @@ const ShowTitle = ({title}) => {
   if(title) {
     return (
       <>
-        <section data-jarallax className="pt-10 pb-11 overlay overlay-black overlay-60 jarallax" style={{backgroundColor: "#add"}}>
-          <div className="container">
-            <div className="row justify-content-left">
-              <div className="col-12 col-md-10 col-lg-8 text-left">
-                <h1 className="display-2 font-weight-bold text-white">
+        <section className="bg-dark pt-10 pb-11 overlay overlay-black overlay-60 jarallax">
+          <div className="container-md">
+            <div className="row justify-content-center">
+              <div className="col">
+                <h1 className="font-weight-bold text-white mb-2">
                   {title}
                 </h1>
               </div>
