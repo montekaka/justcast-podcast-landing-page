@@ -1,0 +1,269 @@
+.dark-html-widget-player {
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  .widget-player-container {
+    display: flex;
+    background-color: #0c1824;
+    border-radius: 10px;
+  }
+  
+  .widget-player-app {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    /* border-radius: 10px; */  
+    background-color: #30343c; 
+    justify-content: space-start;
+  }
+
+  .play-control-button {
+    border: 2px solid #fff;
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .widget-player-app-rounded {  
+    border-radius: 10px;
+  }
+  
+  .widget-playlist-player-app {
+    background-color: yellow; 
+  }
+  
+  .widget-player-app > .artwork > img {
+  
+    height: 120px;
+    width: 120px;    
+    border-radius: 5px;
+  }
+  
+  .widget-player-container > .widget-player-app > .minimize-button  {
+    height: 150px;
+    width: 20px;
+  }
+  
+  .widget-player-container > .widget-player-app > .main {
+    display: flex;
+    height: 150px;
+    width: 100%;
+    min-width: 0;
+    padding: 0 10px;
+    flex-direction: column;
+    overflow:auto;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .podcast-name  {  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px;
+    text-transform: uppercase;
+    line-height: 14px;
+    font-weight: bold;
+    opacity: 0.55;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .episode-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size:20px;
+    font-weight: 800;
+    line-height: 30px;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .controls {
+    padding: 20px 0;
+    display: flex;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .controls > .play-button {
+    height: 50px;
+    width: 50px;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .controls > .miscellaneous {
+    height: 50px;
+    width: 100%;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .controls > .miscellaneous > .player-progress-bar {
+    width: 100%;
+    position: relative;
+  }
+  
+  
+  .widget-player-container > .widget-player-app > .main > .controls > .miscellaneous > .player-progress-bar > input {
+    width: 99%;
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .controls > .miscellaneous > .player-progress-bar > progress {
+    width: 100%;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .controls > .miscellaneous > .buttons > .time {
+    display: flex;
+    flex-direction: row;
+    width: 60px;
+    justify-content: space-between;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .controls > .miscellaneous > .buttons > .time > span {
+    font-size: 10px;
+    opacity: 0.55;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .menu {
+    display: flex;
+    align-items: flex-start;  
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .menu > nav {
+    display: flex;
+    justify-content: space-around;
+    width: 180px;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .menu > nav > .nav-item {
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  
+  
+  /* Share */
+  
+  .widget-player-container > .widget-player-app > .main > .info > .header {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .header > .title {
+    font-size: 20px;
+    font-weight: 800;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .header > .subtitle {
+    font-size: 11px;
+    opacity: 0.55;
+    text-transform: uppercase;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .body > .inputs > .input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-around;
+    padding: 5px 0;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .body > .inputs > .input > label {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    width: 60px;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .body > .inputs > .input > input {
+    width: 80%;
+    height: 24px;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .body > .inputs > .input > .copyButton {
+    width: 60px;
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-style: solid;
+    border-color: #fff;
+    border-radius: 5px;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .body > .icons-with-label {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px 0;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .body > .icons-with-label > .item {
+    margin: 5px;
+    display: flex;
+    width: 140px;
+    align-items: center;  
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .body > .icons-with-label > .item > .icon {
+    padding-right: 5px;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .body > .icons-with-label > .icon-with-label {
+    margin-right: 5px;
+  }
+  
+  .widget-player-container > .widget-player-app > .main > .info > .body > .icons-with-label > .item > .label {
+    font-size: 12px;
+  }
+  
+  .button-with-icon-podcast-apps {
+    margin: 5px;
+  }
+  
+  .button-with-icon-podcast-apps > .label {
+    margin: 0 5px;
+    font-size: 12px;
+  }
+  
+  .widget-playlist {
+    background-color:#30343c;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  .widget-playlist > .playlist-header {
+    opacity: 0.7;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid #e3e3e3;
+  }
+  
+  .widget-playlist > .playlist-header > div {
+    padding: 5px 20px;
+  }
+  
+  .widget-playlist > .playlist-items {
+    max-height: 300px;  
+    overflow: scroll;
+  }
+  .widget-playlist > .playlist-items > .selected-item {
+    background-color: #272c33;
+    font-weight: bold;
+  }
+  
+  .widget-playlist > .playlist-items > .widget-playlist-item {
+    padding: 0px 20px;
+    opacity: 0.75;
+    flex-grow: 1;
+    font-size: 13px;
+    line-height: 40px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+  }
+  

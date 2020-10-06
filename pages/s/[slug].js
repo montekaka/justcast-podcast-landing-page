@@ -1,14 +1,39 @@
 import React from 'react';
+
 import { ShowTitle, ShowInfo, ShowNote } from '../../components/ShareEpisode'
+import { AudioPlayer } from '../../components/EpisodePlayer'
 
 const Post = ({data}) => {
   if(data && data.show) {
+    const menus = [];
+    if(data.show.hide_widget_subscribe !== true) {
+      menus.push({key: 'subscribe', label: 'subscribe'})
+    }
+    if(data.show.hide_widget_share !== true) {
+      menus.push({key: 'share', label: 'share'})
+    }
+    menus.push({key: 'more_info', label: 'more info'})
+
     return (
       <>
         <ShowTitle title={data.show.name}/>
-        <section className="pt-8 pt-md-11 pb-8 pb-md-14">
+        <section>
           <div className="container">
             <div className="row">
+              <div className="col-12">
+                <div className="rounded shadow mt-n10 mb-4">
+                  <AudioPlayer
+                    id={data.id}
+                    showId={data.show.showId}
+                    show={data.show}
+                    playerControlSquare={true}
+                    audiopostData={data}
+                    menuItems={menus}                
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="row pt-8 pt-md-11 pb-8 pb-md-14">
               <div className="col-12 col-md-4">
                 <ShowInfo publishDate="SEPTEMBER 29, 2020" authorName="Josh Chen" websiteUrl="abc"/>
               </div>
