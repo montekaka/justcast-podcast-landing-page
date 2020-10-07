@@ -1,4 +1,6 @@
 import React from "react";
+import { format } from 'date-fns'
+import { playtimeFormat } from '../../libs'
 import { CustomInput, Progress } from 'reactstrap';
 import WidgetPlayerPlayPauseButton from './WidgetPlayerPlayPauseButton'
 import WidgetPlayerMenu from './WidgetPlayerMenu';
@@ -19,7 +21,7 @@ const WidgetPlayerControl = ({
     return (
       <>
         <section className="podcast-name">
-            {date}
+            {format(new Date(date),'MMMM dd, yyyy')}
         </section>
         <section className="episode-name">
             {name}
@@ -46,9 +48,9 @@ const WidgetPlayerControl = ({
             </div>          
             <div className="buttons">
               <section className="time">
-                <span>{playedSeconds > 1 ? playedSeconds : "0:00"}</span>
+                <span>{playedSeconds > 1 ? playtimeFormat(playedSeconds) : "00:00:00"}</span>
                 <span>|</span>
-                <span>{duration}</span>              
+                <span>{playtimeFormat(duration)}</span>              
               </section>
             </div>
           </div>

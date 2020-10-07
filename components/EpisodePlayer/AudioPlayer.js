@@ -52,7 +52,6 @@ const AudioPlayer = ({playerControlSquare, id, showId, show, menuItems, audiopos
 
   const handleSeekMouseUp = (e) => {
     toggleSeeking()
-    console.log(audiopost.playedSeconds)
     reactPlayer.seekTo(audiopost.playedSeconds);
   }
 
