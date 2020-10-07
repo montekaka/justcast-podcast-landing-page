@@ -48,7 +48,7 @@ const WidgetPlayerControl = ({
             </div>          
             <div className="buttons">
               <section className="time">
-                <span>{playedSeconds > 1 ? playtimeFormat(playedSeconds) : "00:00:00"}</span>
+                <span>{playedSeconds > 1 ? playtimeFormat(playedSeconds) : "00:00"}</span>
                 <span>|</span>
                 <span>{playtimeFormat(duration)}</span>              
               </section>
