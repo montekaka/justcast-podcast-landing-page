@@ -19,8 +19,9 @@ const HeaderMeta = ({data}) => {
       {data.show.keywords ? <meta content={data.show.keywords} name="keywords"/> : null}
       {data.description ? <meta content={strippedString(data.description)} name="description"/> : null}
       <meta content='player' name='twitter:card' />
-      {data.show.twitter_connection_screen_name ? <meta content={`@${data.show.twitter_connection_screen_name}`} name='twitter:site'/> : null}
-      <meta content={`${data.name} | ${data.show.name}`} name="twitter:description"/>
+      {data.show.twitter_connection_screen_name ? <meta content={`@${data.show.twitter_connection_screen_name}`} name='twitter:site'/> : <meta content={`@thejustcast`} name='twitter:site'/>}      
+      <meta content={`${data.name} | ${data.show.name}`} name="twitter:title"/>
+      {data.description ? <meta content={strippedString(data.description)} name="twitter:description"/> : null}
       <meta content={data.embedded_player} name="twitter:player"/>
       <meta content='500' name='twitter:player:width'/>
       <meta content='180' name='twitter:player:height'/>
