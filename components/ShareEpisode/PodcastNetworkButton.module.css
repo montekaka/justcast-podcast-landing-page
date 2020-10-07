@@ -1,0 +1,26 @@
+.button {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #444;  
+  display: flex;
+  line-height: 12px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.label {
+  margin-left: 5px;
+}
+
+.subtitle {
+  color: #888;
+  font-weight: 500;
+  font-size: 9px;
+}
+
+.title {
+  font-size: 13px;
+  color: #444;
+  font-weight: 800;
+  letter-spacing: 0;
+}

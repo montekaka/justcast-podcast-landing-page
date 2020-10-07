@@ -1,9 +1,10 @@
 import React from 'react';
-
+import { format } from 'date-fns'
 import { ShowTitle, ShowInfo, ShowNote } from '../../components/ShareEpisode'
 import { AudioPlayer } from '../../components/EpisodePlayer'
 
 const Post = ({data}) => {
+
   if(data && data.show) {
     const menus = [];
     if(data.show.hide_widget_subscribe !== true) {
@@ -35,7 +36,16 @@ const Post = ({data}) => {
             </div>
             <div className="row pt-8 pt-md-11 pb-8 pb-md-14">
               <div className="col-12 col-md-4">
-                <ShowInfo publishDate="SEPTEMBER 29, 2020" authorName="Josh Chen" websiteUrl="abc"/>
+                <ShowInfo 
+                  publishDate={format(new Date(data.audio_date), 'MMMM dd, yyyy')} 
+                  authorName={data.author ? data.author : data.show.author}
+                  websiteUrl={data.show.link ? data.show.link : data.show.landing_page_url}
+                  rssFeed={data.show.rss_feed}
+                  overcast={data.show.overcast}
+                  google_podcast={data.show.google_podcast}
+                  apple_podcast={data.show.apple_podcast}
+                  spotify={data.show.spotify}
+                />                  
               </div>
               <div className="col-12 col-md-8">
                 <ShowNote description={data.description}/>

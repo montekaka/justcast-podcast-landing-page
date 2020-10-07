@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Facebook, Twitter, Instagram } from 'react-feather';
 
 const WidgetPlayerMoreInfo = ({section, title, subtitle, description, shareInputs, shareIconWithLabels}) => {
   if(section) {
@@ -100,11 +101,18 @@ const ShareIconWithLabel = ({iconName, label, url, buttonImg}) => {
         </button>
       )
     }
-    return (
-      <button className="badge badge-rounded-circle badge-light icon-with-label" onClick={onClickHander}>
-        <i className={iconName}></i>      
-      </button>
-    )
+    if(iconName === 'fe fe-facebook') {
+      return (
+        <div className="widget-player-share-button" onClick={onClickHander}>
+          <Facebook/>
+        </div>
+      )
+    }
+    if(iconName === 'fe fe-twitter') {
+      <button className="widget-player-share-button" onClick={onClickHander}>
+        <Twitter/>
+      </button>      
+    }
   }
 
   return null;
