@@ -64,13 +64,18 @@ const HeaderMeta = ({data}) => {
   } = data;
 
   if(is_private_show) {
-    return null;
+    return (
+      <Head>
+        <meta key="robots" name="robots" content="noindex,follow" />
+        <meta key="googlebot" name="googlebot" content="noindex,follow" />        
+      </Head>
+    )
   }
   return (
     <Head>
       <title>{name}</title>
       <link rel="icon" href={artwork_url_16 ? artwork_url_16 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />      
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="keywords" content={keywords ? keywords : ""} />
       <meta name="description" content={description ? description : name} key="description" />      
       <link rel="apple-touch-icon" href={artwork_url_16 ? artwork_url_16 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-v1-gradient-color-icon.png"} />

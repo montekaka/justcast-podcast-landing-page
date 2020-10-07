@@ -22,8 +22,8 @@ const initState = {
 
 const AudioPlayer = ({playerControlSquare, id, showId, show, menuItems, audiopostData, autoplay}) => {
   let reactPlayer = null;
-  const embedUrl = `${process.env.REACT_APP_BASE_PATH}/widget/${showId}/audioposts/${id}`
-  const shareUrl = `${process.env.REACT_APP_BASE_PATH}/shows/${showId}/audioposts/${id}`  
+  const embedUrl = `${process.env.REACT_LANDING_PAGE_PATH}/widget/${showId}/audioposts/${id}`
+  const shareUrl = `${process.env.REACT_LANDING_PAGE_PATH}/shows/${showId}/audioposts/${id}`  
   const [audiopost, setAudiopost] = useState(initState);
   const [section, setSection] = useState('control') //[control, subscribe, share, more_info]
   const [duration, setDuration] = useState(0);

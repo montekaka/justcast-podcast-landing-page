@@ -1,6 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns'
-import { ShowTitle, ShowInfo, ShowNote } from '../../components/ShareEpisode'
+import { ShowTitle, ShowInfo, ShowNote, HeaderMeta } from '../../components/ShareEpisode'
 import { AudioPlayer } from '../../components/EpisodePlayer'
 
 const Post = ({data}) => {
@@ -17,6 +17,7 @@ const Post = ({data}) => {
 
     return (
       <>
+        <HeaderMeta data={data}/>
         <ShowTitle title={data.show.name}/>
         <section>
           <div className="container">
