@@ -2,7 +2,7 @@ import React from "react";
 
 const RightSideCoverImage = ({imageURL}) => {
   const imageStyle = {
-    backgroundImage: `url(${imageURL})`
+    backgroundImage: `url(${encodeURI(imageURL)})`
   }
 
   const tranboxStyle = {
