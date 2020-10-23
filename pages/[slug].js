@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import ReactGA from 'react-ga';
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
@@ -21,11 +22,15 @@ const SocialNetworkButtons = dynamic(
 
 const Podcast = ({data}) => {
   const {
-    id, name, link, author, email, description, artwork_url_256,
+    id, name, link, author, email, description, artwork_url_256, slug,
     rss_feed, player_page_link, hide_home_page_button_from_landing_page,
-    facebook_page, twitter_handle, instagram_profile
+    facebook_page, twitter_handle, instagram_profile, google_analytics_id
   } = data;
 
+  if(google_analytics_id) {
+    ReactGA.initialize(google_analytics_id);
+    ReactGA.pageview(`landing_page/${slug}`)
+  }
 
   return (
     <>
