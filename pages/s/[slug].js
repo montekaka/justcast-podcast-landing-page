@@ -1,5 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns'
+import ReactGA from 'react-ga';
 import { ShowTitle, ShowInfo, ShowNote, HeaderMeta } from '../../components/ShareEpisode'
 import { AudioPlayer } from '../../components/EpisodePlayer'
 
@@ -15,6 +16,11 @@ const Post = ({data}) => {
     }
     menus.push({key: 'more_info', label: 'more info'})
 
+    if(data.show.google_analytics_id) {
+      ReactGA.initialize(data.show.google_analytics_id);
+      ReactGA.pageview(`landing_page/s/${data.id}`)
+    }
+    
     return (
       <>
         <HeaderMeta data={data}/>
