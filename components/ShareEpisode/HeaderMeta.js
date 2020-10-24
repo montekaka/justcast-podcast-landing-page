@@ -25,7 +25,7 @@ const HeaderMeta = ({data}) => {
       <meta content={data.embedded_player} name="twitter:player"/>
       <meta content='500' name='twitter:player:width'/>
       <meta content='180' name='twitter:player:height'/>
-      <meta content={data.artwork_url ? data.artwork_url : data.show.artwork_url_256} name='twitter:image'/>
+      <meta content={data.artwork_url ? data.artwork_url : (data.show.social_sharing_image ? data.show.social_sharing_image : data.show.artwork_url_256 )} name='twitter:image'/>
       <meta content={`${data.name} | ${data.show.name}`} name='twitter:image:alt'/>
       <meta content={data.audio_url} name='twitter:player:stream'/>
       <meta content='audio/mpeg' name='twitter:player:stream:content_type'/>
