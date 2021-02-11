@@ -95,11 +95,6 @@ const SelectLinks = ({id, data}) => {
       </div>    
     </> :
     <animated.div style={props}>
-      <Select value={qrCode} options={links} onChange={setQRCode}/>
-      <div style={{paddingTop: "40px", display: "flex", justifyContent: "center"}}>
-        <QRCode value={qrCode.value ? qrCode.value : ""} size={200}/>
-      </div>  
-      <hr/>
       {
         links.map((link) => {
           return (
@@ -115,6 +110,12 @@ const SelectLinks = ({id, data}) => {
           data.hide_home_page_button_from_landing_page ? <></> : <a className="btn btn-primary btn-block lift" href={data.player_page_link}>Visit our Home Page</a>
         }        
       <input defaultValue={rssFeed} id="text-rss-feed" style={{position: "absolute", left: '-9999px'}}/> 
+      <hr/>
+      <Select value={qrCode} options={links} onChange={setQRCode}/>
+      <div style={{paddingTop: "40px", display: "flex", justifyContent: "center"}}>
+        <QRCode value={qrCode.value ? qrCode.value : ""} size={200}/>
+      </div>  
+      <hr/>      
     </animated.div>
   )
 }
