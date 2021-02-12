@@ -4,6 +4,7 @@ import { Facebook, Twitter, Instagram } from 'react-feather';
 const SocialNetworkButtons = ({facebook_page, twitter_handle, instagram_profile}) => {
 
   return (
+    <>
     <div className="btn-group d-flex" role="group" aria-label="Social networks">
       {
         facebook_page ? <a className="btn btn-primary btn-sm" href={facebook_page} target="_blank"><Facebook/></a> : null
@@ -13,11 +14,12 @@ const SocialNetworkButtons = ({facebook_page, twitter_handle, instagram_profile}
       }
       {
         instagram_profile ? <a className="btn btn-warning btn-sm" href={instagram_profile} target="_blank"><Instagram/></a> : null
-      }
+      }      
+    </div>
       {
         (facebook_page || twitter_handle ||  instagram_profile) ? <hr/> : null
       }
-    </div>
+    </>
   )
 }
 
