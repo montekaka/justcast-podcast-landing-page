@@ -4,8 +4,13 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
 
-const RightSideCoverImage = dynamic(
-  () => import('../components/RightSideCoverImage'),
+// const RightSideCoverImage = dynamic(
+//   () => import('../components/RightSideCoverImage'),
+//   { ssr: false}
+// )
+
+const HeaderCoverImage = dynamic(
+  () => import('../components/HeaderCoverImage'),
   { ssr: false}
 )
 
@@ -37,22 +42,21 @@ const Podcast = ({data}) => {
       <HeaderMeta data={data}/>
       <section style={{backgroundColor: "#F1F4F8"}}>
         <div className="container d-flex flex-column">
-          <div className="row align-items-center justify-content-center no-gutters min-vh-100">
-            <div className="col-12 col-md-6 col-lg-4 py-8 py-md-11">
-              <h1 className="mb-0 font-weight-bold">{name}</h1>
-              <p className="mb-3">
+          <div className="row align-items-center justify-content-between no-gutters min-vh-100">
+            <HeaderCoverImage imageURL={artwork_url_256}/>
+            <div className="col-12 col-md-6 py-8 py-md-11">
+              <h2 className="font-weight-bold text-center mb-2">{name}</h2>
+              <p className="font-size-lg text-center text-muted mb-0">
                 Add our content to your favorite podcast player by clicking the button below {hide_home_page_button_from_landing_page ? <></> : <>or <a href={player_page_link}>click</a> here for the home page.</>}
               </p>
-              <p className="mb-3">
-                <SocialNetworkButtons
-                  facebook_page={facebook_page}
-                  twitter_handle={twitter_handle}
-                  instagram_profile={instagram_profile}
-                />
-              </p>                
-              <SelectLinks id={id} data={data}/>            
-            </div>
-            <RightSideCoverImage imageURL={artwork_url_256}/>          
+              <hr className="hr-sm my-6 my-md-8 border-gray-300"/>
+              <SocialNetworkButtons
+                facebook_page={facebook_page}
+                twitter_handle={twitter_handle}
+                instagram_profile={instagram_profile}
+              />
+              <SelectLinks id={id} data={data}/>
+            </div>                        
           </div>        
         </div>
 
