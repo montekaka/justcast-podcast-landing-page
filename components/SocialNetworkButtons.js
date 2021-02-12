@@ -15,7 +15,7 @@ const SocialNetworkButtons = ({facebook_page, twitter_handle, instagram_profile}
         instagram_profile ? <a className="btn btn-warning btn-sm" href={instagram_profile} target="_blank"><Instagram/></a> : null
       }
       {
-        (facebook_page || twitter_handle ||  instagram_profile) ? <br/> : null
+        (facebook_page || twitter_handle ||  instagram_profile) ? <hr/> : null
       }
     </div>
   )
