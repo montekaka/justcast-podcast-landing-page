@@ -49,12 +49,12 @@ const Podcast = ({data}) => {
               <p className="font-size-lg text-center text-muted mb-0">
                 Add our content to your favorite podcast player by clicking the button below {hide_home_page_button_from_landing_page ? <></> : <>or <a href={player_page_link}>click</a> here for the home page.</>}
               </p>
-              <hr className="hr-sm my-6 my-md-8 border-gray-300"/>
+              <hr className="hr-sm my-6 my-md-8 border-gray-300"/>              
               <SocialNetworkButtons
                 facebook_page={facebook_page}
                 twitter_handle={twitter_handle}
                 instagram_profile={instagram_profile}
-              />
+              />              
               <SelectLinks id={id} data={data}/>
             </div>                        
           </div>        
