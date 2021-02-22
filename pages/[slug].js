@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ReactGA from 'react-ga';
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-
 
 // const RightSideCoverImage = dynamic(
 //   () => import('../components/RightSideCoverImage'),
@@ -24,13 +23,17 @@ const SocialNetworkButtons = dynamic(
   { ssr: false}
 )
 
+const Tipjar = dynamic(() => import('../components/Tipjar/Tipjar'), { ssr: false})
 
 const Podcast = ({data}) => {
   const {
     id, name, link, author, email, description, artwork_url_256, slug,
     rss_feed, player_page_link, hide_home_page_button_from_landing_page,
-    facebook_page, twitter_handle, instagram_profile, google_analytics_id
+    facebook_page, twitter_handle, instagram_profile, google_analytics_id, 
+    prices, stripe_user_id
   } = data;
+
+  // const {prices, stripe_user_id} = tipjarData;
 
   if(google_analytics_id) {
     ReactGA.initialize(google_analytics_id);
@@ -49,12 +52,13 @@ const Podcast = ({data}) => {
               <p className="font-size-lg text-center text-muted mb-0">
                 Add our content to your favorite podcast player by clicking the button below {hide_home_page_button_from_landing_page ? <></> : <>or <a href={player_page_link}>click</a> here for the home page.</>}
               </p>
-              <hr className="hr-sm my-6 my-md-8 border-gray-300"/>              
+              <hr className="hr-sm my-6 my-md-8 border-gray-300"/>                            
               <SocialNetworkButtons
                 facebook_page={facebook_page}
                 twitter_handle={twitter_handle}
                 instagram_profile={instagram_profile}
-              />              
+              />
+              <Tipjar slug={slug} prices={prices} stripe_user_id={stripe_user_id}/>
               <SelectLinks id={id} data={data}/>
             </div>                        
           </div>        
@@ -140,9 +144,16 @@ const HeaderMeta = ({data}) => {
 export const getServerSideProps = async ({params: {slug}}) => {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
+
   const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}`)
+  const tipjarRes = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}/tip_jar_prices_public`)
   
-  const data = await res.json()  
+  const showData = await res.json();
+  const tipData = await tipjarRes.json();
+
+  const data = {...showData, ...tipData}
+  // console.log(tipData)
+  
   // Pass post data to the page via props
   return { props: { data } }
 }
