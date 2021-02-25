@@ -81,6 +81,14 @@ const HeaderMeta = ({data}) => {
       <Head>
         <meta key="robots" name="robots" content="noindex,follow" />
         <meta key="googlebot" name="googlebot" content="noindex,follow" />        
+        <link rel="icon" href={artwork_url_16 ? artwork_url_16 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />        
+        <link rel="apple-touch-icon" href={artwork_url_16 ? artwork_url_16 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-v1-gradient-color-icon.png"} />
+
+        <link rel="shortcut icon" type="image/png" href={artwork_url_16 ? artwork_url_16 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} sizes="16x16" />
+        <link rel="shortcut icon" type="image/png" href={artwork_url_32 ? artwork_url_32 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} sizes="32X32" />
+        <link rel="shortcut icon" type="image/png" href={artwork_url_64 ? artwork_url_64 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} sizes="64X64" />
+        <link rel="shortcut icon" type="image/png" href={artwork_url_256 ? artwork_url_256 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} sizes="256X256" />        
       </Head>
     )
   }
