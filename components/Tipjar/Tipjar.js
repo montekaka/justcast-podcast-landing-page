@@ -3,8 +3,9 @@ import axios from 'axios';
 import { Button } from 'reactstrap';
 import { loadStripe } from "@stripe/stripe-js";
 import PriceModal from './PriceModal';
+import EmailUsButton from './../EmailUsButton'
 
-const Tipjar = ({slug, prices, stripe_user_id}) => {
+const Tipjar = ({slug, prices, stripe_user_id, email, name}) => {
   const [modal, setModal] = useState(false)
   const [message, setMessage] = useState('');
   const [title, setTitle] = useState('');
@@ -82,13 +83,14 @@ const Tipjar = ({slug, prices, stripe_user_id}) => {
           setTitle("How much would you like to tip?")
           setMessage("")
           toggle();
-        }} className="btn-block lift">Support Us</Button>
+        }} className="btn-block lift">Support Us</Button>        
+        <EmailUsButton email={email} subject={`Feedback for ${name}`}/>
       </div>
       </>
     )
   }
 
-  return null;
+  return <div style={{marginBottom: "20px"}}><EmailUsButton/></div>;
 }
 
 

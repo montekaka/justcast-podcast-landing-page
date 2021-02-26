@@ -105,10 +105,7 @@ const SelectLinks = ({id, data}) => {
         )
       }                  
       <hr/>
-      <div onClick={copyToClipboard} className="btn btn-secondary btn-block lift">{copyFeedLink}</div>
-        {
-          data.hide_home_page_button_from_landing_page ? <></> : <a className="btn btn-primary btn-block lift" href={data.player_page_link}>Visit our Home Page</a>
-        }        
+      <div onClick={copyToClipboard} className="btn btn-secondary btn-block lift">{copyFeedLink}</div>   
       <input defaultValue={rssFeed} id="text-rss-feed" style={{position: "absolute", left: '-9999px'}}/> 
       <hr/>
       <Select value={qrCode} options={links} onChange={setQRCode}/>
