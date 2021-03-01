@@ -90,7 +90,7 @@ const Tipjar = ({slug, prices, stripe_user_id, email, name}) => {
     )
   }
 
-  return <div style={{marginBottom: "20px"}}><EmailUsButton/></div>;
+  return <div style={{marginBottom: "20px"}}><EmailUsButton email={email} subject={`Feedback for ${name}`}/></div>;
 }
 
 
