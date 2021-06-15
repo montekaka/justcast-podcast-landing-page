@@ -24,13 +24,14 @@ const SocialNetworkButtons = dynamic(
 )
 
 const Tipjar = dynamic(() => import('../components/Tipjar/Tipjar'), { ssr: false})
+const EmailSignup = dynamic(() => import('../components/EmailSignup/EmailSignup'), { ssr: false})
 
 const Podcast = ({data}) => {
   const {
     id, name, link, author, email, description, artwork_url_256, slug,
     rss_feed, player_page_link, hide_home_page_button_from_landing_page,
     facebook_page, twitter_handle, instagram_profile, google_analytics_id, 
-    prices, stripe_user_id
+    prices, stripe_user_id, mailchimp_button_title_message, mailchimp_show_form, mailchimp_button_text
   } = data;
 
   // const {prices, stripe_user_id} = tipjarData;
@@ -41,7 +42,7 @@ const Podcast = ({data}) => {
   }
 
   return (
-    <>
+    <>      
       <HeaderMeta data={data}/>
       <section style={{backgroundColor: "#F1F4F8"}}>
         <div className="container d-flex flex-column">
@@ -54,7 +55,13 @@ const Podcast = ({data}) => {
               </p>              
               {
                 hide_home_page_button_from_landing_page ? <></> : <><br/><a className="btn btn-secondary btn-block lift" href={link ? link : player_page_link}>Visit our Home Page</a></>
-              }     
+              }
+              <EmailSignup
+                show_id={id}
+                show_form={mailchimp_show_form}
+                button_text={mailchimp_button_text}
+                button_title_message={mailchimp_button_title_message}
+              />
               <hr className="hr-sm my-6 my-md-8 border-gray-300"/>                            
               <SocialNetworkButtons
                 facebook_page={facebook_page}
