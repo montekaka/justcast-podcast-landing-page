@@ -266,10 +266,12 @@
   .widget-playlist > .playlist-items > .widget-playlist-item {
     padding: 0px 20px;
     opacity: 0.75;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     font-size: 13px;
-    line-height: 40px;
-    white-space: nowrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* line-height: 40px; */
+    /* white-space: nowrap; */
     display: flex;
     justify-content: space-between;
     cursor: pointer;
