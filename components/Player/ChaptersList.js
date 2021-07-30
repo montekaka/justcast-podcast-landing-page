@@ -16,7 +16,7 @@ const ChaptersList = ({chapters, handleChapterClick}) => {
                     handleChapterClick(chapter.startTime)
                   }}
                 >
-                  <div className="title">{chapter.name}</div>         
+                  <div className="title">{chapter.title}</div>         
                   <div className="duration">{getHHMMSSFromSeconds(chapter.startTime)}</div>         
                 </div>
               )
