@@ -1,5 +1,5 @@
 import React from "react";
-import {getSecondsFromHHMMSS} from '../../libs'
+import { getHHMMSSFromSeconds} from '../../libs'
 
 const ChaptersList = ({chapters, handleChapterClick}) => {
   if(chapters && chapters.length > 0) {
@@ -13,12 +13,11 @@ const ChaptersList = ({chapters, handleChapterClick}) => {
                   key={(idx+1).toString()} 
                   className="widget-playlist-item"
                   onClick={() => {
-                    const seconds = getSecondsFromHHMMSS(chapter.startTime)
-                    handleChapterClick(seconds)
+                    handleChapterClick(chapter.startTime)
                   }}
                 >
                   <div className="title">{chapter.name}</div>         
-                  <div className="duration">{chapter.startTime}</div>         
+                  <div className="duration">{getHHMMSSFromSeconds(chapter.startTime)}</div>         
                 </div>
               )
             })
