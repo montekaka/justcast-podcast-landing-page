@@ -2,49 +2,52 @@ import React from "react";
 import ReactPlayer from 'react-player'
 import FullPlayer from './FullPlayer'
 
-const WidgetPlayer = ({
-  progressBarIdName,
-  minimize, 
-  audio_date, 
-  artwork, 
-  name, 
-  description,
-  url, 
-  embedUrl,
-  shareUrl,
-  duration, 
-  playedSeconds, 
-  played, 
-  playing, 
-  handleDuration, 
-  handleProgress, 
-  handlPlayPauseClick, 
-  handleSliderChange, 
-  handleSeekMouseDown, 
-  handleSeekMouseUp, 
-  handlePlayerRef, 
-  section,
-  handleSectionChange,
-  shareOnTwitter,
-  shareOnFacebook,
-  apple_podcast,
-  google_podcast,
-  overcast,
-  spotify,
-  pocket_casts,
-  breaker,
-  castro,
-  radio_public,
-  castbox,
-  tune_in,
-  stitcher,
-  rssFeed,
-  facebook_page,
-  twitter_handle,
-  playerControlSquare,
-  hideWidgetPubDate,
-  menuItems
-}) => {
+const WidgetPlayer = (props) => {
+  const {
+    progressBarIdName,
+    minimize, 
+    audio_date, 
+    artwork, 
+    name, 
+    description,
+    url, 
+    embedUrl,
+    shareUrl,
+    duration, 
+    playedSeconds, 
+    played, 
+    playing, 
+    handleDuration, 
+    handleProgress, 
+    handlPlayPauseClick, 
+    handleSliderChange, 
+    handleSeekMouseDown, 
+    handleSeekMouseUp, 
+    handlePlayerRef, 
+    section,
+    handleSectionChange,
+    shareOnTwitter,
+    shareOnFacebook,
+    apple_podcast,
+    google_podcast,
+    overcast,
+    spotify,
+    pocket_casts,
+    breaker,
+    castro,
+    radio_public,
+    castbox,
+    tune_in,
+    stitcher,
+    rssFeed,
+    facebook_page,
+    twitter_handle,
+    playerControlSquare,
+    hideWidgetPubDate,
+    menuItems,
+    playerClassName
+  } = props;
+
   return (
     <>
       <FullPlayer 
@@ -82,7 +85,9 @@ const WidgetPlayer = ({
       playerControlSquare={playerControlSquare}
       hideWidgetPubDate={hideWidgetPubDate}
       menuItems={menuItems}
+      playerClassName={playerClassName}
       />
+      {props.children}
       <ReactPlayer url={url}
           className='react-player'
           width='0%'
@@ -91,7 +96,7 @@ const WidgetPlayer = ({
           onDuration={handleDuration}
           onProgress={handleProgress}
           playing={playing}
-        />      
+      />            
     </>
   )
 }

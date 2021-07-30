@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {WidgetPlayer} from './../Player';
+import {WidgetPlayer, ChaptersList} from './../Player';
+
+import axios from "axios";
 const initState = {
   id: "",
   name: "",
@@ -20,13 +22,17 @@ const initState = {
   shareOnTwitter: ""
 }
 
-const AudioPlayer = ({playerControlSquare, id, showId, show, menuItems, audiopostData, autoplay}) => {
+const AudioPlayer = (props) => {
+  const {playerControlSquare, id, showId, show, menuItems, audiopostData, autoplay} = props;
   let reactPlayer = null;
   const embedUrl = `${process.env.REACT_LANDING_PAGE_PATH}/widget/${showId}/audioposts/${id}`
   const shareUrl = `${process.env.REACT_LANDING_PAGE_PATH}/shows/${showId}/audioposts/${id}`  
   const [audiopost, setAudiopost] = useState(initState);
   const [section, setSection] = useState('control') //[control, subscribe, share, more_info]
   const [duration, setDuration] = useState(0);
+  const [chapters, setChapters] = useState([]);
+  const [playerClassName, setPlayerClassName] = useState('');
+
   const toggleSeeking = () => {
     setAudiopost({...audiopost, seeking: !audiopost.seeking});
   }
@@ -77,8 +83,25 @@ const AudioPlayer = ({playerControlSquare, id, showId, show, menuItems, audiopos
         artwork: show.artwork_url_256,
         shareOnFacebook: audiopostData.share_on_facebook,
         shareOnTwitter: audiopostData.share_on_twitter,
-        playing: autoplay ? autoplay : false
+        playing: autoplay ? autoplay : false        
       })      
+
+      if(audiopostData.chapters_url) {
+        axios.get(audiopostData.chapters_url)
+        .then((res) => {
+          if(res.data && res.data.chapters && res.data.chapters.length > 0) {
+            setChapters(res.data.chapters);                      
+          } else {
+            setPlayerClassName('widget-with-border-radius')
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setPlayerClassName('widget-with-border-radius')
+        })
+      } else {
+        setPlayerClassName('widget-with-border-radius')
+      }
     }
   }, [audiopostData.id])
 
@@ -125,8 +148,11 @@ const AudioPlayer = ({playerControlSquare, id, showId, show, menuItems, audiopos
         facebook_page={show.facebook_page}
         twitter_handle={show.twitter_handle}
         hideWidgetPubDate={show.hide_widget_pub_date}  
-        menuItems={menuItems}        
-      />
+        menuItems={menuItems}  
+        playerClassName={playerClassName} 
+      >
+        <ChaptersList chapters={chapters}/>
+      </WidgetPlayer>
     )
   }
 

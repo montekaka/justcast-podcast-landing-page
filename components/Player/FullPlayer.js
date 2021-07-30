@@ -50,7 +50,8 @@ const FullPlayer = ({
   twitter_handle,
   playerControlSquare,
   hideWidgetPubDate,
-  menuItems
+  menuItems,
+  playerClassName
 }) => {
   const date = hideWidgetPubDate === true ? '' : audio_date
   const embedCode = `<iframe src='${embedUrl}' width='100%' height='180' frameborder='0' scrolling='no' seamless='true' style='width:100%; height:180px;'></iframe>`
@@ -71,7 +72,7 @@ const FullPlayer = ({
   const playerControlClass = playerControlSquare ? 'widget-player-app' : 'widget-player-app widget-player-app-rounded';
 
   return (
-    <div className='widget-player-container dark-html-widget-player'>
+    <div className={`widget-player-container dark-html-widget-player ${playerClassName}`}>
       <section className={playerControlClass}>
         <div className="artwork">
           <img src={artwork ? artwork : "https://justcast.herokuapp.com/images/default_thumb_show_image.png"} />
@@ -83,7 +84,7 @@ const FullPlayer = ({
             handleSeekMouseDown={handleSeekMouseDown} handleSeekMouseUp={handleSeekMouseUp} 
             handleSliderChange={handleSliderChange} section={section}
             handleSectionChange={handleSectionChange}
-            menuItems={menuItems}            
+            menuItems={menuItems}          
           />
           <WidgetPlayerMoreInfo section={section === 'subscribe'} 
             title='Subscribe' 
