@@ -71,6 +71,13 @@ const AudioPlayer = (props) => {
     }
   }
 
+  const handleChangeChapter = (seconds) => {
+    if(audiopost.playing === false) {
+      setAudiopost({...audiopost, playedSeconds: seconds, playing: true});
+    }
+    reactPlayer.seekTo(seconds);
+  }
+
   useEffect(() => {
     if(audiopostData.id && show.id) {
       setAudiopost({
@@ -151,7 +158,7 @@ const AudioPlayer = (props) => {
         menuItems={menuItems}  
         playerClassName={playerClassName} 
       >
-        <ChaptersList chapters={chapters}/>
+        <ChaptersList chapters={chapters} handleChapterClick={handleChangeChapter}/>
       </WidgetPlayer>
     )
   }
