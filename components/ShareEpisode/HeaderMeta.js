@@ -14,19 +14,19 @@ const HeaderMeta = ({data}) => {
   
   return (
     <Head>
-      <title>{data.show.name} | {data.name}</title>
+      <title>{data.show.podcast_title} | {data.episode_title}</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       {data.show.keywords ? <meta content={data.show.keywords} name="keywords"/> : null}
       {data.description ? <meta content={strippedString(data.description)} name="description"/> : null}
       <meta content='player' name='twitter:card' />
       {data.show.twitter_connection_screen_name ? <meta content={`@${data.show.twitter_connection_screen_name}`} name='twitter:site'/> : <meta content={`@thejustcast`} name='twitter:site'/>}      
-      <meta content={`${data.name} | ${data.show.name}`} name="twitter:title"/>
+      <meta content={`${data.episode_title} | ${data.show.podcast_title}`} name="twitter:title"/>
       {data.description ? <meta content={strippedString(data.description)} name="twitter:description"/> : null}
       <meta content={data.embedded_player} name="twitter:player"/>
       <meta content='500' name='twitter:player:width'/>
       <meta content='180' name='twitter:player:height'/>
       <meta content={data.artwork_url ? data.artwork_url : (data.show.social_sharing_image ? data.show.social_sharing_image : data.show.artwork_url_256 )} name='twitter:image'/>
-      <meta content={`${data.name} | ${data.show.name}`} name='twitter:image:alt'/>
+      <meta content={`${data.episode_title} | ${data.show.podcast_title}`} name='twitter:image:alt'/>
       <meta content={data.audio_url} name='twitter:player:stream'/>
       <meta content='audio/mpeg' name='twitter:player:stream:content_type'/>
       <meta content={data.artwork_url ? data.artwork_url : data.show.artwork_url_256} property='og:image'/>

@@ -15,16 +15,16 @@ const WidgetPlayerControl = ({
     date, name, playing, handlPlayPauseClick,
     progressBarIdName, playedSeconds, duration,
     handleSeekMouseDown, handleSeekMouseUp, handleSliderChange,
-    section, handleSectionChange, menuItems
+    section, handleSectionChange, menuItems,hideWidgetPubDate
   }) => {
   if(section === 'control') {
     return (
       <>
         <section className="podcast-name">
-            {format(new Date(date),'MMMM dd, yyyy')}
+          {hideWidgetPubDate ? null : format(new Date(date),'MMMM dd, yyyy')}        
         </section>
         <section className="episode-name">
-            {name}
+          {name}
         </section>
         <section className="controls">
           <div className="play-button">

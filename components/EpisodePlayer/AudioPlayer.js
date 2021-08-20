@@ -83,7 +83,7 @@ const AudioPlayer = (props) => {
       setAudiopost({
         ...audiopost, 
         id: audiopostData.id,
-        name: audiopostData.name,
+        name: audiopostData.episode_title,
         description: audiopostData.description,
         audio_date: audiopostData.audio_date,
         url: audiopostData.url,

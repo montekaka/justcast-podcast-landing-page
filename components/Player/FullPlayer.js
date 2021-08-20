@@ -53,7 +53,7 @@ const FullPlayer = ({
   menuItems,
   playerClassName
 }) => {
-  const date = hideWidgetPubDate === true ? '' : audio_date
+  // const date = hideWidgetPubDate === true ? '' : audio_date
   const embedCode = `<iframe src='${embedUrl}' width='100%' height='180' frameborder='0' scrolling='no' seamless='true' style='width:100%; height:180px;'></iframe>`
   const podcastApps = [
     apple_podcast ? {label: "Apple Podcasts", iconName: applePodcastSrc, url: apple_podcast, buttonImg: true} : null,
@@ -79,12 +79,13 @@ const FullPlayer = ({
         </div>
         <div className="main">
           <WidgetPlayerControl
-            date={date} name={name} playing={playing} handlPlayPauseClick={handlPlayPauseClick}
+            date={audio_date} name={name} playing={playing} handlPlayPauseClick={handlPlayPauseClick}
             progressBarIdName={progressBarIdName} playedSeconds={playedSeconds} duration={duration}
             handleSeekMouseDown={handleSeekMouseDown} handleSeekMouseUp={handleSeekMouseUp} 
             handleSliderChange={handleSliderChange} section={section}
             handleSectionChange={handleSectionChange}
-            menuItems={menuItems}          
+            menuItems={menuItems}  
+            hideWidgetPubDate={hideWidgetPubDate}        
           />
           <WidgetPlayerMoreInfo section={section === 'subscribe'} 
             title='Subscribe' 

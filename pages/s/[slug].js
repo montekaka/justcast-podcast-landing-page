@@ -24,7 +24,7 @@ const Post = ({data}) => {
     return (
       <>
         <HeaderMeta data={data}/>
-        <ShowTitle title={data.show.name}/>
+        <ShowTitle title={data.show.podcast_title}/>
         <section>
           <div className="container">
             <div className="row">
