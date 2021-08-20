@@ -31,7 +31,8 @@ const Podcast = ({data}) => {
     id, name, link, author, email, description, artwork_url_256, slug,
     rss_feed, player_page_link, hide_home_page_button_from_landing_page,
     facebook_page, twitter_handle, instagram_profile, google_analytics_id, 
-    prices, stripe_user_id, mailchimp_button_title_message, mailchimp_show_form, mailchimp_button_text
+    prices, stripe_user_id, mailchimp_button_title_message, 
+    mailchimp_show_form, mailchimp_button_text, podcast_title
   } = data;
 
   // const {prices, stripe_user_id} = tipjarData;
@@ -49,7 +50,7 @@ const Podcast = ({data}) => {
           <div className="row align-items-center justify-content-between no-gutters min-vh-100">
             <HeaderCoverImage imageURL={artwork_url_256}/>
             <div className="col-12 col-md-6 py-8 py-md-11">
-              <h2 className="font-weight-bold text-center mb-2">{name}</h2>
+              <h2 className="font-weight-bold text-center mb-2">{podcast_title}</h2>
               <p className="font-size-lg text-center text-muted mb-0">
                 Add our content to your favorite podcast player by clicking the button below.                
               </p>              
@@ -83,7 +84,7 @@ const HeaderMeta = ({data}) => {
   const {
     id, name, link, author, email, description, title, keywords, 
     artwork_url_16, artwork_url_32, artwork_url_64, artwork_url_256,
-    rss_feed, page_link, twitter_handle, is_private_show
+    rss_feed, page_link, twitter_handle, is_private_show, podcast_title
   } = data;
 
   if(is_private_show) {
@@ -104,7 +105,7 @@ const HeaderMeta = ({data}) => {
   }
   return (
     <Head>
-      <title>{name}</title>
+      <title>{podcast_title}</title>
       <link rel="icon" href={artwork_url_16 ? artwork_url_16 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="keywords" content={keywords ? keywords : ""} />
@@ -116,19 +117,19 @@ const HeaderMeta = ({data}) => {
       <link rel="shortcut icon" type="image/png" href={artwork_url_64 ? artwork_url_64 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} sizes="64X64" />
       <link rel="shortcut icon" type="image/png" href={artwork_url_256 ? artwork_url_256 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} sizes="256X256" />
 
-      <link type="application/rss+xml" rel="alternate" title={name} href={rss_feed}/>
+      <link type="application/rss+xml" rel="alternate" title={podcast_title} href={rss_feed}/>
 
-      <meta property="og:title" content={name} key="title" />
+      <meta property="og:title" content={podcast_title} key="title" />
       <meta property="og:type" content="website"/>
-      <meta property="og:site_name" content={name}/>
-      <meta property="og:description" content={description ? description : name} />    
+      <meta property="og:site_name" content={podcast_title}/>
+      <meta property="og:description" content={description ? description : podcast_title} />    
       <meta property="og:url" content={link ? link : page_link} />
       <meta property="og:image" content={artwork_url_256 ? artwork_url_256 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} />      
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content={twitter_handle ? twitter_handle : ""} />
-      <meta name="twitter:title" content={name} />
-      <meta name="twitter:description" content={description ? description : name} />
+      <meta name="twitter:title" content={podcast_title} />
+      <meta name="twitter:description" content={description ? description : podcast_title} />
       <meta name="twitter:image" content={artwork_url_256 ? artwork_url_256 : "https://justcast.sfo2.digitaloceanspaces.com/LandingPageAssets/Imgs/JustCast-logo192.png"} />      
 
       <meta content="$ITUNES_APP_ID" name="apple-itunes-app"/>      
