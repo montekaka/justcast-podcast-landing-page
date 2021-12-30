@@ -72,6 +72,10 @@ const SelectLinks = ({id, data}) => {
       _links.push({value: data.stitcher, name: 'Stitcher', label: "Stitcher", id: "stitcher"})
     }
 
+    if(data.amazon_podcast_link) {
+      _links.push({value: data.amazon_podcast_link, name: 'Amazon Music', label: "Amazon Music", id: "amazon_music"})
+    }
+
     setLinks(_links);
     setRssFeed(data.rss_feed)
     setQRCode(_links[0])    
