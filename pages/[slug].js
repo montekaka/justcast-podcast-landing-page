@@ -23,6 +23,7 @@ const SocialNetworkButtons = dynamic(
   { ssr: false}
 )
 
+const SupportUs = dynamic(() => import('../components/SupportUs'), { ssr: false})
 const Tipjar = dynamic(() => import('../components/Tipjar/Tipjar'), { ssr: false})
 const EmailSignup = dynamic(() => import('../components/EmailSignup/EmailSignup'), { ssr: false})
 
@@ -32,7 +33,7 @@ const Podcast = ({data}) => {
     rss_feed, player_page_link, hide_home_page_button_from_landing_page,
     facebook_page, twitter_handle, instagram_profile, google_analytics_id, 
     prices, stripe_user_id, mailchimp_button_title_message, 
-    mailchimp_show_form, mailchimp_button_text, podcast_title
+    mailchimp_show_form, mailchimp_button_text, podcast_title, patreon_support_link
   } = data;
 
   // const {prices, stripe_user_id} = tipjarData;
@@ -70,6 +71,7 @@ const Podcast = ({data}) => {
                 instagram_profile={instagram_profile}
               />
               <Tipjar slug={slug} prices={prices} stripe_user_id={stripe_user_id} email={email} name={name}/>
+              <SupportUs patreon_support_link={patreon_support_link}/>
               <SelectLinks id={id} data={data}/>
             </div>                        
           </div>        
