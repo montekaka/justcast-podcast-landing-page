@@ -2,16 +2,17 @@ import React, {useState, useEffect} from "react";
 import ReactGA from 'react-ga';
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import HeaderCoverImage from '../components/HeaderCoverImage'
 
 // const RightSideCoverImage = dynamic(
 //   () => import('../components/RightSideCoverImage'),
 //   { ssr: false}
 // )
 
-const HeaderCoverImage = dynamic(
-  () => import('../components/HeaderCoverImage'),
-  { ssr: false}
-)
+// const HeaderCoverImage = dynamic(
+//   () => import('../components/HeaderCoverImage'),
+//   { ssr: false}
+// )
 
 const SelectLinks = dynamic(
   () => import('../components/SelectLinks'),

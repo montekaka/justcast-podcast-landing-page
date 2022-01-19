@@ -1,9 +1,6 @@
 import React from "react";
 
 const HeaderCoverImage = ({imageURL}) => {
-  const imageStyle = {
-    backgroundImage: `url(${encodeURI(imageURL)})`
-  }
 
   const tranboxStyle = {
     backgroundColor: "black",
@@ -17,7 +14,9 @@ const HeaderCoverImage = ({imageURL}) => {
       <div className="d-md-none img-cover" style={{display: "flex", justifyContent: "center", paddingTop: "20px"}}>
         <img src={encodeURI(imageURL)} alt="podcast artwork" className="img-cover" style={{maxWidth: "60%"}}/>
       </div>      
-      <div className="d-none d-md-block vw-50 h-100 float-right bg-cover" style={imageStyle}>
+      <div className="d-none d-md-block vw-50 h-100 float-right bg-cover" style={{
+        backgroundImage: `url(${encodeURI(imageURL)})`
+      }}>
         <div style={tranboxStyle}/>
       </div>
     </div>
