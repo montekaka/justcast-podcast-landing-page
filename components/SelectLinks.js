@@ -32,6 +32,14 @@ const SelectLinks = ({id, data}) => {
       // {value: res.data.private_feed.breaker_url, name: "Breaker", label: "Breaker", id: "breaker"},
     ]
 
+    if(data.podverse) {
+      _links.push({value: data.podverse, name: 'Podverse', label: "Podverse", id: "podverse"})
+    }
+    
+    if(data.fountain) {
+      _links.push({value: data.fountain, name: 'Fountain', label: "Fountain", id: "fountain"})
+    }    
+
     if(data.spotify) {
       _links.push({value: data.spotify, name: 'Spotify', label: "Spotify", id: "spotify"})
     }

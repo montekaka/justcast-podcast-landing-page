@@ -33,7 +33,7 @@ const Podcast = ({data}) => {
     id, name, link, author, email, description, artwork_url_256, slug,
     rss_feed, player_page_link, hide_home_page_button_from_landing_page,
     facebook_page, twitter_handle, instagram_profile, google_analytics_id, 
-    prices, stripe_user_id, mailchimp_button_title_message, 
+    prices, stripe_user_id, mailchimp_button_title_message, mastodon, matrix,
     mailchimp_show_form, mailchimp_button_text, podcast_title, patreon_support_link
   } = data;
 
@@ -70,6 +70,8 @@ const Podcast = ({data}) => {
                 facebook_page={facebook_page}
                 twitter_handle={twitter_handle}
                 instagram_profile={instagram_profile}
+                mastodon={mastodon}
+                matrix={matrix}
               />
               <Tipjar slug={slug} prices={prices} stripe_user_id={stripe_user_id} email={email} name={name}/>
               <SupportUs patreon_support_link={patreon_support_link}/>
