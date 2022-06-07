@@ -3,8 +3,8 @@ import React from "react";
 const HeaderCoverImage = ({imageURL}) => {
 
   const tranboxStyle = {
-    backgroundColor: "black",
-    opacity: "0.6",
+    // backgroundColor: "black",
+    // opacity: "0.6",
     width: "100%",
     height: "100%"
   }
