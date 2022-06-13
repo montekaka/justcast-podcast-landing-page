@@ -30,7 +30,7 @@ const EmailSignup = dynamic(() => import('../components/EmailSignup/EmailSignup'
 
 const Podcast = ({data}) => {
   const {
-    id, name, link, author, email, description, artwork_url_256, slug,
+    id, name, link, author, email, description, artwork_link, slug,
     rss_feed, player_page_link, hide_home_page_button_from_landing_page,
     facebook_page, twitter_handle, instagram_profile, google_analytics_id, 
     prices, stripe_user_id, mailchimp_button_title_message, mastodon, matrix,
@@ -50,7 +50,7 @@ const Podcast = ({data}) => {
       <section style={{backgroundColor: "#F1F4F8"}}>
         <div className="container d-flex flex-column">
           <div className="row align-items-center justify-content-between no-gutters min-vh-100">
-            <HeaderCoverImage imageURL={artwork_url_256}/>
+            <HeaderCoverImage imageURL={artwork_link}/>
             <div className="col-12 col-md-6 py-8 py-md-11">
               <h2 className="font-weight-bold text-center mb-2">{podcast_title}</h2>
               <p className="font-size-lg text-center text-muted mb-0">
@@ -176,6 +176,7 @@ export const getServerSideProps = async ({params: {slug}}) => {
   const tipData = await tipjarRes.json();
 
   const data = {...showData, ...tipData}
+  
   // console.log(tipData)
   
   // Pass post data to the page via props
