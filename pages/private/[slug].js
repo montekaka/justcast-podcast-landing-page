@@ -4,11 +4,13 @@ import {getPodcastIconImageSrc} from '../../libs'
 import { ExternalLink } from 'react-feather';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { useState, useEffect } from 'react'
+import { isIOS, isMobile, isMacOs } from 'react-device-detect';
 
 const PrivatePage = ({
   private_feed_links, rss_feed, podcast_title, artwork_link, description
 }) => {
   const [copied, setCopied] = useState(false);
+  const [links, setLinks] = useState([]);
   useEffect(() => {
     if(copied === true) {
       setTimeout(() => {
@@ -16,6 +18,18 @@ const PrivatePage = ({
       }, 2000)
     }
   }, [copied])
+
+  useEffect(() => {
+    const _links = private_feed_links.filter((view) =>{
+      const {is_ios, is_mac, is_mobile} = view;
+      if(isIOS === is_ios || isMacOs === is_mac || isMobile === is_mobile) {
+        return view;
+      }
+    });
+
+    setLinks(_links)
+  }, [])
+
 
 
   return (
@@ -38,7 +52,7 @@ const PrivatePage = ({
         <ExternalLink/>
       </AppLink>
       {
-        private_feed_links.map((linkInfo, idx) => {
+        links.map((linkInfo, idx) => {
           const {title, subtitle, link, id} = linkInfo;
           const imageSrc = getPodcastIconImageSrc(id);
           return <AppLink 
