@@ -51,7 +51,7 @@ const PrivatePage = ({
         </div>
       </QRCard>}
       <p style={{textAlign: "center", fontWeight: "bold"}}>Subscribe by selecting your podcast player.</p>
-      <AppLink
+      {/* <AppLink
         backgroundColor="white"
         titleDirection="column-reverse"
         title={"Click here"}
@@ -59,7 +59,7 @@ const PrivatePage = ({
         link={"https://help.helloaudio.fm/article/67-listener-faqs"}
       >
         <ExternalLink/>
-      </AppLink>
+      </AppLink> */}
       {
         links.map((linkInfo, idx) => {
           const {title, subtitle, link, id} = linkInfo;
