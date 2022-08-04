@@ -4,7 +4,7 @@ import {getPodcastIconImageSrc} from '../../libs'
 import { ExternalLink } from 'react-feather';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { useState, useEffect } from 'react'
-import { isIOS, isMobile, isMacOs } from 'react-device-detect';
+import { isIOS, isMobile, isMacOs, isDesktop } from 'react-device-detect';
 
 const PrivatePage = ({
   personal_private_link, private_feed_links, rss_feed, podcast_title, artwork_link, description
@@ -30,10 +30,11 @@ const PrivatePage = ({
     setLinks(_links)
   }, [])
 
-
-
   return (
-    <Layout>
+    <Layout 
+      podcast_title={podcast_title}
+      artwork_link={artwork_link}
+    >
       <div style={{marginBottom: "40px"}}>
         <PageHeader
           imageSrc={artwork_link}
@@ -41,14 +42,14 @@ const PrivatePage = ({
           subtitle={description}
         />
       </div>
-      <QRCard
+      {isDesktop && <QRCard
         backgroundColor="white"
         url={personal_private_link}
       >
         <div>
           <p>If you're on desktop but would prefer to open this on your phone, use your phone's camera to scan and open this link.</p>
         </div>
-      </QRCard>      
+      </QRCard>}
       <p style={{textAlign: "center", fontWeight: "bold"}}>Subscribe by selecting your podcast player.</p>
       <AppLink
         backgroundColor="white"
@@ -126,12 +127,12 @@ const PrivatePage = ({
   )
 }
 
-export async function getServerSideProps({params: {slug}, req}) {
+export async function getServerSideProps({params: {slug}, query}) {
   const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}`)
   const data = await res.json();
 
   const {personal_private_link, private_feed_links, rss_feed, podcast_title, artwork_link, description} = data;
-
+ 
   return {
     props: {
       personal_private_link,
