@@ -39,7 +39,7 @@ const PrivatePage = ({
         <PageHeader
           imageSrc={artwork_link}
           title={podcast_title}
-          subtitle={description}
+          // subtitle={description}
         />
       </div>
       {isDesktop && <QRCard
