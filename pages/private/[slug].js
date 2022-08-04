@@ -1,5 +1,5 @@
 import Layout from '../../components/private/Layout'
-import {AppLink, PageHeader, CollapseCard} from 'react-podcast-ninja'
+import {AppLink, PageHeader, CollapseCard, QRCard} from 'react-podcast-ninja'
 import {getPodcastIconImageSrc} from '../../libs'
 import { ExternalLink } from 'react-feather';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import { isIOS, isMobile, isMacOs } from 'react-device-detect';
 
 const PrivatePage = ({
-  private_feed_links, rss_feed, podcast_title, artwork_link, description
+  personal_private_link, private_feed_links, rss_feed, podcast_title, artwork_link, description
 }) => {
   const [copied, setCopied] = useState(false);
   const [links, setLinks] = useState([]);
@@ -41,6 +41,14 @@ const PrivatePage = ({
           subtitle={description}
         />
       </div>
+      <QRCard
+        backgroundColor="white"
+        url={personal_private_link}
+      >
+        <div>
+          <p>If you're on desktop but would prefer to open this on your phone, use your phone's camera to scan and open this link.</p>
+        </div>
+      </QRCard>      
       <p style={{textAlign: "center", fontWeight: "bold"}}>Subscribe by selecting your podcast player.</p>
       <AppLink
         backgroundColor="white"
@@ -73,7 +81,7 @@ const PrivatePage = ({
         backgroundColor="white"
         imageSrc={getPodcastIconImageSrc("google_podcast")}
       >
-        <ol style={{padding: "0.4rem 1.25rem"}}>
+        <ol style={{padding: "2rem 1.25rem 0rem 1.25rem"}}>
           <li>
           <CopyToClipboard text={rss_feed}
             onCopy={() => {
@@ -97,18 +105,18 @@ const PrivatePage = ({
         backgroundColor="white"
         imageSrc={getPodcastIconImageSrc("rss_feed")}
       >
-        <ol style={{padding: "0.4rem 1.25rem"}}>
+        <ol style={{padding: "2rem 1.25rem 0rem 1.25rem"}}>
           <li>
-          <CopyToClipboard text={rss_feed}
-            onCopy={() => {
-              setCopied(true);
-            }}>
-            <span style={{
-              color: `${copied ? "#2e712a" : "#072F5F"}`,
-              cursor: "pointer",
-              fontWeight: "bold"
-            }}>{ copied ? "Copied to clipboard" : "Click here to copy the RSS feed"}</span>
-          </CopyToClipboard>
+            <CopyToClipboard text={rss_feed}
+              onCopy={() => {
+                setCopied(true);
+              }}>
+              <span style={{
+                color: `${copied ? "#2e712a" : "#072F5F"}`,
+                cursor: "pointer",
+                fontWeight: "bold"
+              }}>{ copied ? "Copied to clipboard" : "Click here to copy the RSS feed"}</span>
+            </CopyToClipboard>
           </li>
           <li>Open your podcast app</li>
           <li>Paste RSS feed</li>
@@ -118,14 +126,15 @@ const PrivatePage = ({
   )
 }
 
-export async function getServerSideProps({params: {slug}}) {
+export async function getServerSideProps({params: {slug}, req}) {
   const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}`)
   const data = await res.json();
 
-  const {private_feed_links, rss_feed, podcast_title, artwork_link, description} = data;
+  const {personal_private_link, private_feed_links, rss_feed, podcast_title, artwork_link, description} = data;
 
   return {
     props: {
+      personal_private_link,
       private_feed_links, 
       rss_feed, 
       podcast_title, 

@@ -3636,6 +3636,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
+
 lodash.isplainobject@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
@@ -4520,6 +4525,11 @@ qr.js@0.0.0:
   resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
   integrity sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8=
 
+qrcode-generator@^1.4.1:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/qrcode-generator/-/qrcode-generator-1.4.4.tgz#63f771224854759329a99048806a53ed278740e7"
+  integrity sha512-HM7yY8O2ilqhmULxGMpcHSF1EhJJ9yBj8gvDEuZ6M+KGJ0YY2hKpnXvRD+hZPLrDVck3ExIGhmPtSdcjC+guuw==
+
 qs@^6.6.0:
   version "6.9.6"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.6.tgz#26ed3c8243a431b2924aca84cc90471f35d5a0ee"
@@ -4628,10 +4638,10 @@ react-player@^2.6.2:
     prop-types "^15.7.2"
     react-fast-compare "^3.0.1"
 
-react-podcast-ninja@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/react-podcast-ninja/-/react-podcast-ninja-1.6.0.tgz#88ad2773e4ed1f83d98ed870c3dfda7c992cd3d0"
-  integrity sha512-w8jyTq/ESmerABdO5W80nCnJBP8Z4tup+JHqX5jZhjh6lW7LdgTAuJYbd4YzGmeuA7i+kTo9SZm0I2GfqRD5cw==
+react-podcast-ninja@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/react-podcast-ninja/-/react-podcast-ninja-1.6.2.tgz#6dedc9938b8b8dbf10a12a54ec676c69a01b1cc4"
+  integrity sha512-TBxlahpLor1ohK9Ot+iPBtLH+nRKN3FUjZpymUle4K8sKGLf+2mrkDMPV2l9WPXNVKBtYzIatJdpTmI15k4uyg==
 
 react-popper@^1.3.6:
   version "1.3.7"
@@ -4654,6 +4664,14 @@ react-qr-code@^1.0.2:
     "@react-native-community/art" "^1.2.0"
     prop-types "^15.7.2"
     qr.js "0.0.0"
+
+react-qrcode-logo@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/react-qrcode-logo/-/react-qrcode-logo-2.7.0.tgz#9cadfd0da193f348cb4ac0534a9f8d85657a6232"
+  integrity sha512-79Ce+1GlETAbu8fQGAoHczjvXjsm044+FeVAutu9lwJ/w0hRKRRPPHQRkPmXZK4aPi/H9Fqv+7P29VYQ9Yo2dA==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    qrcode-generator "^1.4.1"
 
 react-refresh@0.8.3:
   version "0.8.3"
