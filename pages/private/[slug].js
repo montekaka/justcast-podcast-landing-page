@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import { isIOS, isMobile, isMacOs, isDesktop } from 'react-device-detect';
 
 const PrivatePage = ({
-  personal_private_link, private_feed_links, rss_feed, podcast_title, artwork_link, description
+  personal_private_link, private_feed_links, xml_feed, rss_feed, podcast_title, artwork_link, description
 }) => {
   const [copied, setCopied] = useState(false);
   const [links, setLinks] = useState([]);
@@ -84,7 +84,7 @@ const PrivatePage = ({
       >
         <ol style={{padding: "2rem 1.25rem 0rem 1.25rem"}}>
           <li>
-          <CopyToClipboard text={rss_feed}
+          <CopyToClipboard text={xml_feed}
             onCopy={() => {
               setCopied(true);
             }}>
@@ -108,7 +108,7 @@ const PrivatePage = ({
       >
         <ol style={{padding: "2rem 1.25rem 0rem 1.25rem"}}>
           <li>
-            <CopyToClipboard text={rss_feed}
+            <CopyToClipboard text={xml_feed}
               onCopy={() => {
                 setCopied(true);
               }}>
@@ -131,13 +131,14 @@ export async function getServerSideProps({params: {slug}, query}) {
   const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}`)
   const data = await res.json();
 
-  const {personal_private_link, private_feed_links, rss_feed, podcast_title, artwork_link, description} = data;
+  const {personal_private_link, private_feed_links, xml_feed, rss_feed, podcast_title, artwork_link, description} = data;
  
   return {
     props: {
       personal_private_link,
       private_feed_links, 
       rss_feed, 
+      xml_feed,
       podcast_title, 
       artwork_link, 
       description
