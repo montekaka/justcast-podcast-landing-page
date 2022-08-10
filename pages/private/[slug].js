@@ -21,8 +21,8 @@ const PrivatePage = ({
 
   useEffect(() => {
     const _links = private_feed_links.filter((view) =>{
-      const {is_ios, is_mac, is_mobile} = view;
-      if(isIOS === is_ios || isMacOs === is_mac || isMobile === is_mobile) {
+      const {is_ios, is_mac, is_mobile, universal} = view;
+      if(isIOS === is_ios || isMacOs === is_mac || isMobile === is_mobile || universal) {
         return view;
       }
     });
@@ -77,7 +77,7 @@ const PrivatePage = ({
           </AppLink>
         })
       }
-      <CollapseCard
+      {/* <CollapseCard
         title="Google Podcast"
         backgroundColor="white"
         imageSrc={getPodcastIconImageSrc("google_podcast")}
@@ -100,7 +100,7 @@ const PrivatePage = ({
           </li>
           <li>Paste RSS feed</li>
         </ol>
-      </CollapseCard>      
+      </CollapseCard>       */}
       <CollapseCard
         title="RSS Feed"
         backgroundColor="white"
