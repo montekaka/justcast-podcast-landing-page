@@ -17,7 +17,7 @@ const Review = () => {
         setMessage(res.data.message)
       })
       .catch((err) => {
-        setMessage(err.response.data.message)
+        setMessage(err.response.data.error)
       })
     }
   }, [slug, status, token]);
