@@ -4,6 +4,7 @@ const PodcastPlayer = dynamic(() => import('../../../../components/PodcastPlayer
 // import {PodcastPlayer} from "../../../../components/"
 
 const Page = ({rssFeed, playerConfigs}) => {
+  console.log(rssFeed)
   // "http://localhost:3000/shows/40138/private_feeds/7144ca959131904e8741b1bcd43a30ff6dc1dddd.rss"
   return (
     <PodcastPlayer 
@@ -13,9 +14,10 @@ const Page = ({rssFeed, playerConfigs}) => {
   )
 }
 
-export const getServerSideProps = async ({params: {token, show_id, slug}}) => {
+export const getServerSideProps = async ({params: {show_id, slug}, query}) => {
   const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${show_id}`)
   const data = await res.json();
+  const { token } = query;
   const playerConfigs = {
     hidePubDate: data.hide_widget_pub_date,        
     hideMoreInfo: data.hide_more_info_from_widget,
@@ -29,6 +31,7 @@ export const getServerSideProps = async ({params: {token, show_id, slug}}) => {
     chapterBackgroundColor: data.widget_chapter_background_color ?  data.widget_chapter_background_color : "#30343c",
     chapterTextColor:  data.widget_chapter_text_color ?  data.widget_chapter_text_color : "#f7f8f9"
   }
+
   const rssFeed = `${process.env.RAILS_ENDPOINT}/shows/${show_id}/private_feeds/${slug}.rss?token=${token}`  
   return { props: { playerConfigs, rssFeed} }
 }
