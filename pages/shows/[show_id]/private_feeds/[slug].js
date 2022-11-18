@@ -21,6 +21,7 @@ export const getServerSideProps = async ({params: {show_id, slug}, query}) => {
   const playerConfigs = {
     hidePubDate: data.hide_widget_pub_date,        
     hideMoreInfo: data.hide_more_info_from_widget,
+    playlistFullHeight: data.playlist_full_height,
     primaryBackgroundColor: data.widget_primary_background_color ?  data.widget_primary_background_color : "#0c1824",
     primaryButtonColor: data.widget_primary_button_color ?  data.widget_primary_button_color : "#f7f8f9",
     primaryTextColor: data.widget_primary_text_color ?  data.widget_primary_text_color : "#f7f8f9",
