@@ -3,12 +3,13 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { Form, Button, FormText, FormGroup, Label, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 
-export default function InviteEmailForm({slug}) {
+export default function InviteEmailForm({slug, requiresFullName}) {
   const {register, formState: {errors}, handleSubmit} = useForm();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [requestAccess, setRequestAccess] = useState(false)
   const [requestEmail, setRequestEmail] = useState("");
+  const [fullName, setFullName] = useState(null);
 
   const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -18,7 +19,7 @@ export default function InviteEmailForm({slug}) {
     setRequestEmail("")
   }
   const clickCheckAccess = (data) => {
-    const { email } = data;
+    const { email, full_name } = data;
 
     if(email) {
       axios.post(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}/access`, {
@@ -35,6 +36,7 @@ export default function InviteEmailForm({slug}) {
         setModalOpen(true)
         setRequestAccess(true)
         setRequestEmail(email.toLowerCase())
+        setFullName(full_name);
       })
     }
   }
@@ -42,7 +44,8 @@ export default function InviteEmailForm({slug}) {
   const clickSendRequest = () => {
     if(requestEmail && emailPattern.test(requestEmail.toLowerCase()))
     axios.post(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}/request_access`, {
-      email_address: requestEmail
+      email_address: requestEmail,
+      full_name: fullName
     })
     .then((res) => {
       setModalMessage(res.data.message)
@@ -102,9 +105,22 @@ export default function InviteEmailForm({slug}) {
                   message: "Entered value does not match email format"
                 }
               })}
-            />
+            />            
             <FormText color="danger">{errors.email?.message}</FormText>
           </FormGroup>
+          <FormGroup>
+            <input
+              type="text"
+              name="full_name"
+              style={{width: "100%"}}
+              className='form-control-sm'
+              placeholder="Full name"
+              {...register("full_name", {
+                required: requiresFullName ? "required" : false,
+              })}
+            />            
+            <FormText color="danger">{errors.full_name?.message}</FormText>
+          </FormGroup>          
           <Button className="btn-block lift btn-sm btn-secondary" type="submit">VERIFY EMAIL &#38; SUBSCRIBE</Button>
         </Form>
       </div>

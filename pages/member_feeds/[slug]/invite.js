@@ -2,7 +2,7 @@ import Layout from '../../../components/private/Layout'
 import { PageHeader } from 'react-podcast-ninja'
 import {InviteEmailForm} from "../../../components/custom-form"
 
-const InvitePage = ({podcast_title, artwork_link, slug}) => {  
+const InvitePage = ({podcast_title, artwork_link, slug, requires_full_name}) => {  
   return (
     <Layout 
       podcast_title={podcast_title}
@@ -16,7 +16,7 @@ const InvitePage = ({podcast_title, artwork_link, slug}) => {
         />
         <div style={{marginTop: "40px"}}>
         <p style={{textAlign: "center", fontWeight: "bold"}}>Join the Podcast!</p>
-          <InviteEmailForm slug={slug}/>
+          <InviteEmailForm slug={slug} requiresFullName={requires_full_name}/>
         </div>        
       </div>
     </Layout>
@@ -31,13 +31,15 @@ export async function getServerSideProps({params: {slug} }) {
   const {
     podcast_title,
     artwork_link,
+    requires_full_name
   } = data;
  
   return {
     props: {
       podcast_title,
       artwork_link,
-      slug
+      slug,
+      requires_full_name
     }, // will be passed to the page component as props
   }
 }
