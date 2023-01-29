@@ -1,22 +1,25 @@
 import React from 'react';
 import dynamic from "next/dynamic";
 const PodcastPlayer = dynamic(() => import('../../../../components/PodcastPlayer'), { ssr: false})
+const WidgetLayout = dynamic(() => import('../../../../components/private/WidgetLayout'), { ssr: false})
 // import {PodcastPlayer} from "../../../../components/"
 
-const Page = ({rssFeed, playerConfigs}) => {
-  console.log(rssFeed)
+const Page = ({rssFeed, playerConfigs, podcast_title, artwork_link}) => {
   // "http://localhost:3000/shows/40138/private_feeds/7144ca959131904e8741b1bcd43a30ff6dc1dddd.rss"
   return (
-    <PodcastPlayer 
-      playerConfigs={playerConfigs}
-      rssFeed={rssFeed}
-    />
+    <WidgetLayout podcast_title={podcast_title} artwork_link={artwork_link}>
+      <PodcastPlayer 
+        playerConfigs={playerConfigs}
+        rssFeed={rssFeed}
+      />
+    </WidgetLayout>
   )
 }
 
 export const getServerSideProps = async ({params: {show_id, slug}, query}) => {
   const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${show_id}`)
   const data = await res.json();
+  const { podcast_title, artwork_link } = data;
   const { token } = query;
   const playerConfigs = {
     hidePubDate: data.hide_widget_pub_date,        
@@ -34,7 +37,7 @@ export const getServerSideProps = async ({params: {show_id, slug}, query}) => {
   }
 
   const rssFeed = `${process.env.RAILS_ENDPOINT}/shows/${show_id}/private_feeds/${slug}.rss?token=${token}`  
-  return { props: { playerConfigs, rssFeed} }
+  return { props: { playerConfigs, rssFeed, podcast_title, artwork_link} }
 }
 
 export default Page
