@@ -16,6 +16,8 @@ const WidgetLayout = (props) => {
             <meta content='800' property='og:image:height'/>
             <meta content='800' property='og:image:width'/>
             <link rel="shortcut icon" type="image/x-icon" href={artwork_link} />
+            <link rel="apple-touch-icon" sizes="180x180" href={artwork_link} />
+            <link rel="icon" type="image/png" sizes="32x32" href={artwork_link} />
           </>          
         }
       </Head>    
