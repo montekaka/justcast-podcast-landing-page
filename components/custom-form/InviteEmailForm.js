@@ -91,7 +91,6 @@ export default function InviteEmailForm({slug, requiresFullName}) {
       }}>
         <Form onSubmit={handleSubmit(clickCheckAccess)}>
           <FormGroup>
-            <Label for="email">What is your email address?</Label>
             <input
               type="email"
               name="email"
@@ -121,7 +120,7 @@ export default function InviteEmailForm({slug, requiresFullName}) {
             />            
             <FormText color="danger">{errors.full_name?.message}</FormText>
           </FormGroup>          
-          <Button className="btn-block lift btn-sm btn-secondary" type="submit">VERIFY EMAIL &#38; SUBSCRIBE</Button>
+          <Button className="btn-block lift btn-sm btn-secondary" type="submit">Send</Button>
         </Form>
       </div>
     </div>

@@ -12,10 +12,10 @@ const InvitePage = ({podcast_title, artwork_link, slug, requires_full_name}) => 
         <PageHeader
           imageSrc={artwork_link}
           title={podcast_title}
-          subtitle={`A secret podcast feed just for ${podcast_title} members`}
+          subtitle="A private, members-only podcast feed"
         />
         <div style={{marginTop: "40px"}}>
-        <p style={{textAlign: "center", fontWeight: "bold"}}>Join the Podcast!</p>
+        <p style={{textAlign: "center", fontWeight: "bold"}}>Request access below</p>
           <InviteEmailForm slug={slug} requiresFullName={requires_full_name}/>
         </div>        
       </div>
