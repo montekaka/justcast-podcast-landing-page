@@ -11,7 +11,7 @@ const PrivatePage = ({
   private_feed_links, 
   rss_feed, 
   podcast_title, 
-  artwork_link, 
+  artwork_url, 
   web_player_url,
 }) => {
   const [copied, setCopied] = useState(false);
@@ -38,11 +38,11 @@ const PrivatePage = ({
   return (
     <Layout 
       podcast_title={podcast_title}
-      artwork_link={artwork_link}
+      artwork_link={artwork_url}
     >
       <div style={{marginBottom: "40px"}}>
         <PageHeader
-          imageSrc={artwork_link}
+          imageSrc={artwork_url}
           title={podcast_title}
           // subtitle={description}
         />
@@ -109,7 +109,7 @@ const PrivatePage = ({
 }
 
 export async function getServerSideProps({params: {slug}}) {
-  const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/private_feeds/${slug}`)
+  const res = await fetch(`${process.env.RAILS_ENDPOINT}/v3/private_feeds/${slug}`)
   const data = await res.json();
 
   const {
@@ -117,7 +117,7 @@ export async function getServerSideProps({params: {slug}}) {
     private_feed_links, 
     rss_feed, 
     podcast_title, 
-    artwork_link, 
+    artwork_url, 
     web_player_url,
   } = data;
  
@@ -127,7 +127,7 @@ export async function getServerSideProps({params: {slug}}) {
       private_feed_links, 
       rss_feed, 
       podcast_title, 
-      artwork_link, 
+      artwork_url, 
       web_player_url,
     }, // will be passed to the page component as props
   }

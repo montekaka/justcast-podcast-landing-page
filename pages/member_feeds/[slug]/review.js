@@ -10,6 +10,7 @@ const Review = () => {
   const router = useRouter();
   const { slug, status, token } = router.query;
   const url = `${process.env.RAILS_ENDPOINT}/v1/private_feeds/${slug}/review?status=${status}&token=${token}`;
+
   useEffect(() => {
     if(slug && status && token) {
       axios.get(url)
