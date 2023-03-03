@@ -1,21 +1,13 @@
 import React from 'react';
 import { format } from 'date-fns'
 import ReactGA from 'react-ga';
+import dynamic from "next/dynamic";
 import { ShowTitle, ShowInfo, ShowNote, HeaderMeta } from '../../components/ShareEpisode'
-import { AudioPlayer } from '../../components/EpisodePlayer'
+const SingleEpisodePlayer = dynamic(() => import('../../components/SingleEpisodePlayer'), { ssr: false})
 
-const Post = ({data}) => {
+const Post = ({data, playerConfigs}) => {
 
-  if(data && data.show) {
-    const menus = [];
-    if(data.show.hide_widget_subscribe !== true) {
-      menus.push({key: 'subscribe', label: 'subscribe'})
-    }
-    if(data.show.hide_widget_share !== true) {
-      menus.push({key: 'share', label: 'share'})
-    }
-    menus.push({key: 'more_info', label: 'more info'})
-
+  if(data?.show?.podcast_title) {
     if(data.show.google_analytics_id) {
       ReactGA.initialize(data.show.google_analytics_id);
       ReactGA.pageview(`landing_page/s/${data.id}`)
@@ -24,19 +16,25 @@ const Post = ({data}) => {
     return (
       <>
         <HeaderMeta data={data}/>
-        <ShowTitle title={data.show.podcast_title}/>
+        <ShowTitle title={data?.show?.podcast_title}/>
         <section>
           <div className="container">
             <div className="row">
               <div className="col-12">
                 <div className="rounded shadow mt-n10 mb-4">
-                  <AudioPlayer
-                    id={data.id}
-                    showId={data.show.showId}
-                    show={data.show}
-                    playerControlSquare={true}
-                    audiopostData={data}
-                    menuItems={menus}                
+                  <SingleEpisodePlayer
+                    episodes={[{
+                      title: data?.episode_title,
+                      description: data?.description,
+                      podcastTitle: data?.show?.podcast_title,
+                      artworkUrl: data?.artwork_url,
+                      pubDate: data?.audio_date,
+                      link: data?.single_page_url,
+                      audioUrl: data?.audio_url,
+                      chaptersUrl: data?.chapters_url,
+                    }]}
+                    configs={playerConfigs}
+                    playerId="podcast-player"
                   />
                 </div>
               </div>
@@ -69,11 +67,26 @@ const Post = ({data}) => {
 export const getServerSideProps = async ({params: {slug}}) => {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
-  const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/audioposts/${slug}/share`)
-  
-  const data = await res.json()    
+  const res = await fetch(`${process.env.RAILS_ENDPOINT}/v3/audioposts/${slug}/share`)
+  const data = await res.json();
+
+  const playerConfigs = {
+    hidePubDate: data?.show?.hide_widget_pub_date,        
+    hideMoreInfo: data?.show?.hide_more_info_from_widget,
+    playlistFullHeight: data?.show?.playlist_full_height,
+    primaryBackgroundColor: data?.show?.widget_primary_background_color || "#0c1824",
+    primaryButtonColor: data?.show?.widget_primary_button_color || "#f7f8f9",
+    primaryTextColor: data?.show?.widget_primary_text_color || "#f7f8f9",
+    progressBarFilledColor: data?.show?.widget_progress_bar_filled_color || "#f7f8f9",
+    progressBarBackgroundColor: data?.show?.widget_progress_bar_background_color || "#8A8175",
+    playlistBackgroundColor: data?.show?.widget_playlist_background_color || "#30343c",
+    playlistTextColor: data?.show?.widget_playlist_text_color || "#f7f8f9",
+    chapterBackgroundColor: data?.show?.widget_chapter_background_color || "#30343c",
+    chapterTextColor:  data?.show?.widget_chapter_text_color || "#f7f8f9"
+  }  
+
   // Pass post data to the page via props
-  return { props: { data } }
+  return { props: { data, playerConfigs } }
 }
 
 export default Post

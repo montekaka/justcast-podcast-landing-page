@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Error from 'next/error'
 import ReactGA from 'react-ga';
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
@@ -28,10 +29,14 @@ const SupportUs = dynamic(() => import('../components/SupportUs'), { ssr: false}
 const Tipjar = dynamic(() => import('../components/Tipjar/Tipjar'), { ssr: false})
 const EmailSignup = dynamic(() => import('../components/EmailSignup/EmailSignup'), { ssr: false})
 
-const Podcast = ({data}) => {
+const Podcast = ({data, errorCode}) => {
+  if (errorCode) {
+    return <Error statusCode={"404"} />
+  }
+
   const {
-    id, name, link, author, email, description, artwork_link, slug,
-    rss_feed, player_page_link, hide_home_page_button_from_landing_page,
+    id, name, link, email, artwork_url, slug,
+    player_page_link,
     facebook_page, twitter_handle, instagram_profile, google_analytics_id, 
     prices, stripe_user_id, mailchimp_button_title_message, mastodon, matrix,
     mailchimp_show_form, mailchimp_button_text, podcast_title, patreon_support_link
@@ -50,15 +55,13 @@ const Podcast = ({data}) => {
       <section style={{backgroundColor: "#F1F4F8"}}>
         <div className="container d-flex flex-column">
           <div className="row align-items-center justify-content-between no-gutters min-vh-100">
-            <HeaderCoverImage imageURL={artwork_link}/>
+            <HeaderCoverImage imageURL={artwork_url}/>
             <div className="col-12 col-md-6 py-8 py-md-11">
               <h2 className="font-weight-bold text-center mb-2">{podcast_title}</h2>
               <p className="font-size-lg text-center text-muted mb-0">
                 Add our content to your favorite podcast player by clicking the button below.                
               </p>              
-              {
-                hide_home_page_button_from_landing_page ? <></> : <><br/><a className="btn btn-secondary btn-block lift" href={link ? link : player_page_link}>Visit our Home Page</a></>
-              }
+              <a className="btn btn-secondary btn-block lift" href={link ? link : player_page_link}>Visit our Home Page</a>
               <EmailSignup
                 show_id={id}
                 show_form={mailchimp_show_form}
@@ -168,19 +171,19 @@ const HeaderMeta = ({data}) => {
 export const getServerSideProps = async ({params: {slug}}) => {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
-
-  const res = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}`)
+  const res = await fetch(`${process.env.RAILS_ENDPOINT}/v3/shows/${slug}`)
   const tipjarRes = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}/tip_jar_prices_public`)
   
   const showData = await res.json();
   const tipData = await tipjarRes.json();
+  const errorCode = showData.is_private_show
 
-  const data = {...showData, ...tipData}
+  const data = errorCode ? null : {...showData, ...tipData}
   
   // console.log(tipData)
   
   // Pass post data to the page via props
-  return { props: { data } }
+  return { props: { data, errorCode: showData.is_private_show } }
 }
 
 export default Podcast;
