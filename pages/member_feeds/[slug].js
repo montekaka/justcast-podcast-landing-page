@@ -32,7 +32,7 @@ const PrivatePage = ({
   useEffect(() => {
     const _links = private_feed_links.filter((view) =>{
       const {is_ios, is_mac, is_mobile, universal} = view;
-      if(isIOS === is_ios || isMacOs === is_mac || isMobile === is_mobile || universal) {
+      if( universal || (isIOS && isIOS === is_ios) || (isMacOs && isMacOs === is_mac) || (isMobile && isMobile === is_mobile)) {
         return view;
       }
     });

@@ -22,7 +22,7 @@ const PrivatePage = ({
   useEffect(() => {
     const _links = private_feed_links.filter((view) =>{
       const {is_ios, is_mac, is_mobile, universal} = view;
-      if(isIOS === is_ios || isMacOs === is_mac || isMobile === is_mobile || universal) {
+      if( universal || (isIOS && isIOS === is_ios) || (isMacOs && isMacOs === is_mac) || (isMobile && isMobile === is_mobile)) {
         return view;
       }
     });
@@ -50,7 +50,7 @@ const PrivatePage = ({
           <p>If you're on desktop but would prefer to open this on your phone, use your phone's camera to scan and open this link.</p>
         </div>
       </QRCard>}
-      <p style={{textAlign: "center", fontWeight: "bold"}}>Subscribe by selecting your podcast player.</p>
+      <p >Subscribe by selecting your podcast player.</p>
       {/* <AppLink
         backgroundColor="white"
         titleDirection="column-reverse"
