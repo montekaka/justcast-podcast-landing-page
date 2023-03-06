@@ -4,6 +4,7 @@ import ReactGA from 'react-ga';
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import HeaderCoverImage from '../components/HeaderCoverImage'
+// import Redirect from '../components/Redirect'
 
 // const RightSideCoverImage = dynamic(
 //   () => import('../components/RightSideCoverImage'),
@@ -25,13 +26,22 @@ const SocialNetworkButtons = dynamic(
   { ssr: false}
 )
 
+const Redirect = dynamic(
+  () => import('../components/Redirect'),
+  { ssr: false}
+)
+
 const SupportUs = dynamic(() => import('../components/SupportUs'), { ssr: false})
 const Tipjar = dynamic(() => import('../components/Tipjar/Tipjar'), { ssr: false})
 const EmailSignup = dynamic(() => import('../components/EmailSignup/EmailSignup'), { ssr: false})
 
-const Podcast = ({data, errorCode}) => {
+const Podcast = ({data, errorCode, privateRedirect}) => {
   if (errorCode) {
     return <Error statusCode={"404"} />
+  }
+
+  if(privateRedirect) {
+    return <Redirect url={`/private/${data.slug}`}/>
   }
 
   const {
@@ -172,18 +182,20 @@ export const getServerSideProps = async ({params: {slug}}) => {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
   const res = await fetch(`${process.env.RAILS_ENDPOINT}/v3/shows/${slug}`)
-  const tipjarRes = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}/tip_jar_prices_public`)
-  
   const showData = await res.json();
-  const tipData = await tipjarRes.json();
-  const errorCode = showData.is_private_show
+  if(showData) {
 
-  const data = errorCode ? null : {...showData, ...tipData}
+    const tipjarRes = await fetch(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}/tip_jar_prices_public`)  
+    const tipData = await tipjarRes.json();
+    const privateRedirect = showData.is_private_show
   
-  // console.log(tipData)
+    const data = {...showData, ...tipData}
   
-  // Pass post data to the page via props
-  return { props: { data, errorCode: showData.is_private_show } }
+    // Pass post data to the page via props
+    return { props: { data, errorCode: false, privateRedirect } }
+  } else {
+    return { props: { data: null, errorCode: true, redirect: false } }
+  }
 }
 
 export default Podcast;
