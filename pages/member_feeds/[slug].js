@@ -112,24 +112,33 @@ export async function getServerSideProps({params: {slug}}) {
   const res = await fetch(`${process.env.RAILS_ENDPOINT}/v3/private_feeds/${slug}`)
   const data = await res.json();
 
-  const {
-    instructions_url,
-    private_feed_links, 
-    rss_feed, 
-    podcast_title, 
-    artwork_url, 
-    web_player_url,
-  } = data;
- 
-  return {
-    props: {
+  if(data.error_code) {
+    return {
+      props: {
+        errorCode: true
+      }
+    }
+  } else {
+    const {  
       instructions_url,
       private_feed_links, 
       rss_feed, 
       podcast_title, 
       artwork_url, 
-      web_player_url,
-    }, // will be passed to the page component as props
+      web_player_url
+    } = data;
+
+    return {
+      props: {
+        instructions_url,
+        private_feed_links, 
+        rss_feed, 
+        podcast_title, 
+        artwork_url, 
+        web_player_url,
+        errorCode: false
+      },
+    }
   }
 }
 
