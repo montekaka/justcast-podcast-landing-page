@@ -1,4 +1,5 @@
 import Layout from '../../components/private/Layout'
+import Error from 'next/error'
 import {AppLink, PageHeader, CollapseCard, QRCard} from 'react-podcast-ninja'
 import {getPodcastIconImageSrc} from '../../libs'
 import { ExternalLink } from 'react-feather';
@@ -13,7 +14,11 @@ const PrivatePage = ({
   podcast_title, 
   artwork_url, 
   web_player_url,
+  errorCode
 }) => {
+  if (errorCode) {
+    return <Error statusCode={"404"} />
+  }
   const [copied, setCopied] = useState(false);
   const [links, setLinks] = useState([]);
   useEffect(() => {
