@@ -9,10 +9,10 @@ import { isIOS, isMobile, isMacOs, isDesktop } from 'react-device-detect';
 
 const PrivatePage = ({
   instructions_url,
-  private_feed_links, 
-  rss_feed, 
-  podcast_title, 
-  artwork_url, 
+  private_feed_links,
+  rss_feed,
+  podcast_title,
+  artwork_url,
   web_player_url,
   errorCode
 }) => {
@@ -41,7 +41,7 @@ const PrivatePage = ({
   }, [])
 
   return (
-    <Layout 
+    <Layout
       podcast_title={podcast_title}
       artwork_link={artwork_url}
     >
@@ -65,7 +65,7 @@ const PrivatePage = ({
         links.map((linkInfo, idx) => {
           const {title, subtitle, link, id} = linkInfo;
           const imageSrc = getPodcastIconImageSrc(id);
-          return <AppLink 
+          return <AppLink
             key={idx}
             title={title}
             subtitle={subtitle}
@@ -100,15 +100,17 @@ const PrivatePage = ({
           <li>Paste RSS feed</li>
         </ol>
       </CollapseCard>
-      <p style={{textAlign: "center", fontWeight: "bold"}}>Listen on our web player</p>
-      <AppLink 
-        title="Open web player"
+      {/* <p style={{textAlign: "center", fontWeight: "bold"}}>Listen on our web player</p> */}
+      <AppLink
+        title="Our web player"
+        subtitle="Listen on"
         link={web_player_url}
         backgroundColor="white"
         titleDirection="column-reverse"
+        imageSrc={artwork_url}
       >
         <ExternalLink/>
-      </AppLink>      
+      </AppLink>
     </Layout>
   )
 }
@@ -124,22 +126,22 @@ export async function getServerSideProps({params: {slug}}) {
       }
     }
   } else {
-    const {  
+    const {
       instructions_url,
-      private_feed_links, 
-      rss_feed, 
-      podcast_title, 
-      artwork_url, 
+      private_feed_links,
+      rss_feed,
+      podcast_title,
+      artwork_url,
       web_player_url
     } = data;
 
     return {
       props: {
         instructions_url,
-        private_feed_links, 
-        rss_feed, 
-        podcast_title, 
-        artwork_url, 
+        private_feed_links,
+        rss_feed,
+        podcast_title,
+        artwork_url,
         web_player_url,
         errorCode: false
       },
