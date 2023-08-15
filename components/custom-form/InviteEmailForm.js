@@ -25,11 +25,16 @@ export default function InviteEmailForm({slug, requiresFullName}) {
       axios.post(`${process.env.RAILS_ENDPOINT}/v1/shows/${slug}/access`, {
         email_address: email.toLowerCase()
       })
-      .then((res) => {      
-        setModalMessage(res.data.message)
-        setModalOpen(true)
-        setRequestAccess(false)
-        setRequestEmail("")
+      .then((res) => {
+        const {message, redirect_url} = res.data;
+        if(redirect_url) {
+          window.location = redirect_url;
+        } else {
+          setModalMessage(message)
+          setModalOpen(true)
+          setRequestAccess(false)
+          setRequestEmail("")
+        }
       })
       .catch((err) => {
         setModalMessage(err.response.data.error)
@@ -55,7 +60,7 @@ export default function InviteEmailForm({slug, requiresFullName}) {
     .catch((err) => {
       setModalMessage(err.response.data.error)
       setRequestAccess(false)
-      setRequestEmail("")      
+      setRequestEmail("")
     })
   }
 
@@ -104,7 +109,7 @@ export default function InviteEmailForm({slug, requiresFullName}) {
                   message: "Entered value does not match email format"
                 }
               })}
-            />            
+            />
             <FormText color="danger">{errors.email?.message}</FormText>
           </FormGroup>
           <FormGroup>
@@ -117,9 +122,9 @@ export default function InviteEmailForm({slug, requiresFullName}) {
               {...register("full_name", {
                 required: requiresFullName ? "required" : false,
               })}
-            />            
+            />
             <FormText color="danger">{errors.full_name?.message}</FormText>
-          </FormGroup>          
+          </FormGroup>
           <Button className="btn-block lift btn-sm btn-secondary" type="submit">Send</Button>
         </Form>
       </div>
