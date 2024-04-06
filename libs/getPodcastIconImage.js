@@ -20,6 +20,7 @@ const pod_friend = '/assets/img/podcasts/podfriend.svg'
 const podcast_addict = '/assets/img/podcasts/podcastaddict.svg'
 const player_fm = '/assets/img/podcasts/player_fm.svg'
 const amazon_music = '/assets/img/podcasts/amazon_music.svg'
+const youtube_music = '/assets/img/podcasts/youtube_music.svg'
 
 const getPodcastIconImageSrc = (id) => {
   switch(id) {
@@ -31,6 +32,8 @@ const getPodcastIconImageSrc = (id) => {
       return overcast;
     case 'pocket_cast':
       return pocketcast;
+    case 'youtube_music':
+      return youtube_music
     default:
       return rss
   }

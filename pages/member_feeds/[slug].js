@@ -79,6 +79,35 @@ const PrivatePage = ({
         })
       }
       <CollapseCard
+        title="Youtube Music App"
+        subtitle="How it works"
+        backgroundColor="white"
+        imageSrc={getPodcastIconImageSrc("youtube_music")}
+      >
+        <ol style={{padding: "2rem 1.25rem 0rem 1.25rem"}}>
+          <li>
+            <CopyToClipboard text={rss_feed}
+              onCopy={() => {
+                setCopied(true);
+              }}>
+              <span style={{
+                color: `${copied ? "#2e712a" : "#072F5F"}`,
+                cursor: "pointer",
+                fontWeight: "bold"
+              }}>{ copied ? "Copied to clipboard" : "Click here to copy the RSS feed"}</span>
+            </CopyToClipboard>
+          </li>
+          <li><a href="https://tella.video/how-to-add-a-rss-feed-to-youtube-music-app-1-8wis" target="_blank">Watch a How-to video</a></li>
+          <li>From the YouTube Music app, tap Library icon.</li>
+          <li>Tap <strong>Podcast</strong> at the top of the screen.</li>
+          <li>In the bottom-right corner, select <strong>Add podcast</strong>.</li>
+          <li>Select <strong>Add a podcast by RSS feed</strong>.</li>
+          <li>When prompted, paste the URL of the RSS feed that you'd like to add to your YouTube Music Library.</li>
+          <li>Tap <strong>Add</strong> to save the podcast to your library.</li>
+        </ol>
+        <p>Most podcasts will be available within minutes, but some may take longer to appear in your library. Podcasts added using an RSS feed URL have a badge  next to the podcast title in your library.</p>
+      </CollapseCard>
+      <CollapseCard
         title="RSS Feed"
         backgroundColor="white"
         imageSrc={getPodcastIconImageSrc("rss_feed")}
@@ -100,6 +129,7 @@ const PrivatePage = ({
           <li>Paste RSS feed</li>
         </ol>
       </CollapseCard>
+
       {/* <p style={{textAlign: "center", fontWeight: "bold"}}>Listen on our web player</p> */}
       <AppLink
         title="Our web player"
