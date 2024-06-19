@@ -51,6 +51,28 @@ const PrivatePage = ({
           title={podcast_title}
           // subtitle={description}
         />
+        <div>
+          {
+            artwork_url && <img
+              src={artwork_url}
+              style={{
+                height: "96px",
+                width: "96px"
+              }}
+            />
+          }
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px"
+            }}
+          >
+            <p style={{margin: 0, fontSize: "1rem", fontWeight: "700", lineHeight: "1.5", textAlign: "center"}}>{podcast_title}</p>
+          </div>
+        </div>
       </div>
       {isDesktop && <QRCard
         backgroundColor="white"
