@@ -46,12 +46,12 @@ const PrivatePage = ({
       artwork_link={artwork_url}
     >
       <div style={{marginBottom: "40px"}}>
-        <PageHeader
-          imageSrc={artwork_url}
-          title={podcast_title}
-          // subtitle={description}
-        />
-        <div>
+        <div style={{
+            display: 'flex',
+            gap: "20px",
+            flexDirection: "column",
+            alignItems: "center",
+        }}>
           {
             artwork_url && <img
               src={artwork_url}
