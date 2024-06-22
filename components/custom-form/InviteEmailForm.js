@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { Form, Button, FormText, FormGroup, Label, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 
 export default function InviteEmailForm({slug, requiresFullName}) {
+  const router = useRouter()
+
   const {register, formState: {errors}, handleSubmit} = useForm();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -26,9 +29,9 @@ export default function InviteEmailForm({slug, requiresFullName}) {
         email_address: email.toLowerCase()
       })
       .then((res) => {
-        const {message, redirect_url} = res.data;
-        if(redirect_url) {
-          window.location = redirect_url;
+        const {member_feed_slug, message} = res.data;
+        if(member_feed_slug) {
+          router.push(`/member_feeds/${member_feed_slug}`)
         } else {
           setModalMessage(message)
           setModalOpen(true)
